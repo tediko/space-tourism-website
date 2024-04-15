@@ -1,6 +1,6 @@
 @use '../utilities' as *;
 
 body {
-    min-height: 100%;
+    min-height: 100vh;
     font-family: $ff-secondary;
 }
