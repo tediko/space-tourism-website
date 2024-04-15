@@ -39,7 +39,7 @@
 
 /* Text */
 .text {
-    font-family: $ff-secondary;
+    font-family: $ff-tertiary;
     font-size: clamp(0.938rem, 0.852rem + 0.364vw, 1.125rem);
     line-height: 1.77;
     color: $c-white;
@@ -53,13 +53,15 @@
 
     &--sub-sm {
         @extend .text;
+        font-family: $ff-primary;
         font-size: 0.875rem;
         letter-spacing: 0.1469rem;
         line-height: normal;
     }
-
+    
     &--nav {
         @extend .text;
+        font-family: $ff-primary;
         font-size: 1rem;
         letter-spacing: 0.1688rem;
         line-height: normal;
@@ -67,6 +69,10 @@
 
     &--uppercase {
         text-transform: uppercase;
+    }
+
+    &--purple {
+        color: $c-purple-light;
     }
 }
 
