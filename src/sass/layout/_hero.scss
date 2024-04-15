@@ -1,0 +1,119 @@
+@use '../utilities' as *;
+
+/* Hero */
+.hero {
+    $root: &;
+
+    background-image: url('/home/background-home-mobile.jpg');
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+
+    @include breakpoint('md') {
+        background-image: url('/home/background-home-tablet.jpg');
+    }
+    
+    @include breakpoint('lg') {
+        background-image: url('/home/background-home-desktop.jpg');
+    }
+
+    &__container {
+        padding-top: clamp(7rem, 1.646rem + 22.843vw, 12.625rem);
+
+        @include breakpoint('lg') {
+            display: flex;
+            justify-content: space-between;
+            min-height: 100vh;
+            align-items: end;
+            padding-top: 0;
+            padding-bottom: 130px;
+            max-width: 73.375rem;
+            margin: 0 auto;
+            padding-inline: 2rem;
+        }
+    }
+
+    &__intro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(1rem, 0.524rem + 2.03vw, 1.5rem);
+        text-align: center;
+        margin-bottom: clamp(5.063rem, 0.601rem + 19.036vw, 9.75rem);
+
+        @include breakpoint('lg') {
+            margin-bottom: 0;
+            align-items: start;
+            text-align: left;
+        }
+    }
+
+    &__text {
+        max-width: 39ch;
+
+        @include breakpoint('md') {
+            max-width: 45ch;
+        }
+    }
+
+    &__cta {
+        padding-bottom: 2rem;
+
+        @include breakpoint('md') {
+            padding-bottom: 5rem;
+        }
+
+        @include breakpoint('lg') {
+            padding-bottom: 0;
+        }
+    }
+
+    &__link {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: clamp(9.375rem, 5.852rem + 15.03vw, 17.125rem);
+        height: clamp(9.375rem, 5.852rem + 15.03vw, 17.125rem);
+        background-color: $c-white;
+        border-radius: 50%;
+        margin: 0 auto;
+        font-family: $ff-primary;
+        font-size: clamp(1.25rem, 0.536rem + 3.046vw, 2rem);
+        letter-spacing: 0.125rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: $c-black;
+
+        @include breakpoint('md') {
+            &:hover::before {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        &:focus-visible {
+            outline: none;
+        }
+
+        &:focus-visible::before {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        &::before {
+            position: absolute;
+            content: '';
+            top: 50%;
+            left: 50%;
+            width: clamp(15.625rem, 9.943rem + 24.242vw, 28.125rem);
+            height: clamp(15.625rem, 9.943rem + 24.242vw, 28.125rem);
+            transform: translate(-50%, -50%) scale(0.5);
+            background-color: rgba($c-white, 0.1);
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 350ms ease-in-out,
+                        transform 350ms ease-in-out;
+        }
+    }
+}
