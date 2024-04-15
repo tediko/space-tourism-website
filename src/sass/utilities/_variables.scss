@@ -1,0 +1,20 @@
+/* Colors */
+$c-white: hsl(0, 0%, 100%);
+$c-black: hsl(230, 35%, 7%);
+$c-purple-light: hsl(231, 77%, 90%);
+
+/* Backgrounds */
+$bg-nav: hsla(0, 0%, 100%, 0.04);
+
+/* Typography */
+$ff-primary: "Bellefair", serif;
+$ff-secondary: "Barlow Condensed", sans-serif;
+
+/* Media query breakpoints */
+$breakpoints: (
+    xs: 23.5rem,
+    sm: 30.0625rem,
+    md: 48.0625rem,
+    lg: 64rem,
+    xlg: 75rem
+);

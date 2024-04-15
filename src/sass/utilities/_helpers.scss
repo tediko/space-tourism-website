@@ -1,0 +1,86 @@
+@use './variables' as *;
+@use './mixins' as *;
+
+/* Heading */
+.heading {
+    color: $c-white;
+    font-weight: 400;
+    font-family: $ff-primary;
+    text-transform: uppercase;
+
+    &--xlg {
+        @extend .heading;
+        font-size: clamp(5rem, 0.836rem + 17.766vw, 9.375rem);
+    }
+
+    &--lg {
+        @extend .heading;
+        font-size: clamp(3.5rem, 2.25rem + 5.333vw, 6.25rem);
+    }
+
+    &--big {
+        @extend .heading;
+        font-size: clamp(1.5rem, 0.591rem + 3.879vw, 3.5rem);
+    }
+
+    &--md {
+        @extend .heading;
+        font-size: clamp(1rem, 0.545rem + 1.939vw, 2rem);
+    }
+
+    &--sm {
+        @extend .heading;
+        font-family: $ff-secondary;
+        font-size: clamp(1rem, 0.659rem + 1.455vw, 1.75rem);
+        letter-spacing: 0.2969rem;
+        color: $c-purple-light;
+    }
+}
+
+/* Text */
+.text {
+    font-family: $ff-secondary;
+    font-size: clamp(0.938rem, 0.852rem + 0.364vw, 1.125rem);
+    line-height: 1.77;
+    color: $c-white;
+
+    &--sub-big {
+        @extend .text;
+        font-family: $ff-primary;
+        font-size: 1.75rem;
+        line-height: normal;
+    }
+
+    &--sub-sm {
+        @extend .text;
+        font-size: 0.875rem;
+        letter-spacing: 0.1469rem;
+        line-height: normal;
+    }
+
+    &--nav {
+        @extend .text;
+        font-size: 1rem;
+        letter-spacing: 0.1688rem;
+        line-height: normal;
+    }
+
+    &--uppercase {
+        text-transform: uppercase;
+    }
+}
+
+/* Screen readers only! */
+.sr-only {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	-webkit-clip-path: inset(50%) !important;
+		clip-path: inset(50%) !important;
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
+}
