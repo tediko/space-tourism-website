@@ -90,3 +90,26 @@
 	width: 1px !important;
 	white-space: nowrap !important;
 }
+
+/* Animation keyframes */
+@keyframes nav-in {
+    0% {
+        visibility: hidden;
+        transform: translateX(100%);
+    }
+    100% {
+        visibility: visible;
+        transform: translateX(0);
+    }
+}
+
+@keyframes nav-out {
+    0% {
+        visibility: visible;
+        transform: translateX(0);
+    }
+    100% {
+        visibility: hidden;
+        transform: translateX(100%);
+    }
+}
