@@ -32,7 +32,7 @@ const toggleMenu = () => {
             
             MENU_SELECTOR.removeEventListener('animationend', navIn);
         })
-        window.addEventListener('click', handleClickOutsideMenu);
+        window.addEventListener('click', removeOnClickOutsideMenu);
     } else {
         MENU_SELECTOR.classList.add(closeClass);
         
@@ -42,7 +42,7 @@ const toggleMenu = () => {
             BODY_SELECTOR.style.overflowY = "unset";
             
             MENU_SELECTOR.removeEventListener('animationend', navOut);
-            window.removeEventListener('click', handleClickOutsideMenu);
+            window.removeEventListener('click', removeOnClickOutsideMenu);
         })
     }
 }
