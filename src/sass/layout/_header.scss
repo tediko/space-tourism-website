@@ -1,0 +1,221 @@
+@use '../utilities' as *;
+
+/* Header */
+.header {
+    $root: &;
+
+    position: fixed;
+    padding-top: 1.5rem;
+    width: 100%;
+    z-index: 999;
+
+    @include breakpoint('md') {
+        padding-top: 0;
+
+        &::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            right: 0;
+            background: $bg-nav;
+            backdrop-filter: blur(30px);
+            width: 100%;
+            height: 100%;
+            max-width: 31.25rem;
+
+            @include breakpoint('lg') {
+                max-width: unset;
+                width: 57.7%;
+            }
+        }
+    }
+
+    @include breakpoint('lg') {
+        margin-top: 2.5rem;
+    }
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-inline: clamp(1.5rem, 0.548rem + 4.061vw, 2.5rem);
+
+        @include breakpoint('md') {
+            max-width: 86.5625rem;
+            margin: 0 auto;
+        }
+
+        @include breakpoint('lg') {
+            justify-content: start;
+            padding-inline: 1.5625rem;
+        }
+    }
+
+    &__logo {
+        @include breakpoint('lg') {
+            margin-right: 4rem;
+        }
+    }
+
+    &__logo-img {
+        width: clamp(40px, 2.024rem + 2.03vw, 48px);
+        height: clamp(40px, 2.024rem + 2.03vw, 48px);
+    }
+
+    &__separator {
+        display: none;
+
+        @include breakpoint('lg') {
+            display: block;
+            flex: 1;
+            height: 1px;
+            max-width: 29.5625rem;
+            margin-right: clamp(1rem, -10.846rem + 18.51vw, 5.813rem);
+            opacity: 0.25;
+            background-color: $c-white;
+        }
+    }
+
+    &__list {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(2rem, 1.422rem + 2.465vw, 3rem);
+        top: 0;
+        right: 0;
+        width: 67%;
+        height: 100vh;
+        background-color: $bg-nav;
+        backdrop-filter: blur(30px);
+        padding-top: 7.5rem;
+        padding-left: 2rem;
+        z-index: 998;
+        counter-reset: nav-list;
+        counter-set: nav-list -1; // setting counter so it starts with 0
+        transform: translateX(100%);
+
+        &.open {
+            animation: nav-in 500ms ease-in-out forwards;
+        }
+
+        &.close {
+            animation: nav-out 400ms ease-in-out forwards;
+        }
+        
+        @include breakpoint('md') {
+            position: static;
+            flex-direction: row;
+            width: unset;
+            height: unset;
+            padding: 0;
+            background-color: transparent;
+            backdrop-filter: unset;
+            transform: unset;
+        }
+    }
+
+    &__item {
+        @include breakpoint('md') {
+            padding-block: 2.405rem;
+        }
+    }
+    
+    &__link {
+        position: relative;
+        font-family: $ff-secondary;
+        font-size: 1rem;
+        color: $c-white;
+        letter-spacing: 0.1688rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding-left: 1.8rem;
+
+        @include breakpoint('md') {
+            padding-left: 0;
+        }
+
+        @include breakpoint('lg') {
+            padding-left: 1.8rem;
+        }
+
+        &::before {
+            position: absolute;
+            content: "0"counter(nav-list);
+            counter-increment: nav-list;
+            top: 0;
+            left: 0;
+            color: $c-white;
+            font-weight: 600;
+
+            @include breakpoint('md') {
+                display: none;
+            }
+
+            @include breakpoint('lg') {
+                display: block;
+            }
+        }
+    }
+
+    &__menu {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 999;
+
+        @include breakpoint('md') {
+            display: none;
+        }
+        
+        &[aria-expanded="true"] #{$root}__menu-bars {
+            transform: rotate(45deg);
+            transition: transform 200ms 0.12s ease;
+        }
+
+        &[aria-expanded="true"] #{$root}__menu-bars::before {
+            top: 0;
+            transition: top 200ms ease;
+        }
+
+        &[aria-expanded="true"] #{$root}__menu-bars::after {
+            top: 0;
+            transform: rotate(-90deg);
+            transition: top 200ms ease,
+            transform 200ms ease 0.12s;
+        }
+    }
+
+    &__menu-bars {
+        position: relative;
+        width: 100%;
+        height: 3px;
+        background-color: $c-purple-light;
+        transition: transform 200ms ease;
+
+        &::before, &::after {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: inherit;
+            height: inherit;
+            background-color: inherit;
+            transition: top 200ms ease 0.12s,
+                        transform 200ms ease;
+        }
+
+        &::before {
+            top: -9px;
+        }
+
+        &::after {
+            top: 9px;
+        }
+    }
+}
