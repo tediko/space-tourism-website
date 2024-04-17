@@ -50,14 +50,16 @@
     &--sub-big {
         @extend .text;
         font-family: $ff-primary;
+        font-weight: 400;
         font-size: 1.75rem;
         line-height: normal;
     }
 
     &--sub-sm {
         @extend .text;
-        font-family: $ff-primary;
+        font-family: $ff-secondary;
         font-size: 0.875rem;
+        font-weight: 400;
         letter-spacing: 0.1469rem;
         line-height: normal;
     }
