@@ -122,12 +122,6 @@
     
     &__link {
         position: relative;
-        font-family: $ff-secondary;
-        font-size: 1rem;
-        color: $c-white;
-        letter-spacing: 0.1688rem;
-        text-transform: uppercase;
-        text-decoration: none;
         padding-left: 1.8rem;
 
         @include breakpoint('md') {
