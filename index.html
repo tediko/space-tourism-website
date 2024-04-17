@@ -56,28 +56,28 @@
     <section class="destination">
       <div class="destination__container">
         <h2 class="destination__title heading--sm">Pick your destination</h2>
-        <div class="destination__content">
-          <img class="destination__planet-img" src="/destination/image-moon.webp" alt="Close-up image of the moon with visible craters and details on its surface">
+        <div class="destination__content" aria-live="polite" data-destination-content>
+          <img class="destination__planet-img" src="/destination/image-moon.webp" alt="Close-up image of the moon with visible craters and details on its surface" data-destination-planet="Moon">
           <div class="destination__info">
             <div class="destination__tabs">
-              <button class="destination__tab tab-active text--link text--purple" type="button">Moon</button>
-              <button class="destination__tab text--link text--purple" type="button">Mars</button>
-              <button class="destination__tab text--link text--purple" type="button">Europa</button>
-              <button class="destination__tab text--link text--purple" type="button">Titan</button>
+              <button class="destination__tab tab-active text--link text--purple" type="button" data-destination-tab="Moon">Moon</button>
+              <button class="destination__tab text--link text--purple" type="button" data-destination-tab="Mars">Mars</button>
+              <button class="destination__tab text--link text--purple" type="button" data-destination-tab="Europa">Europa</button>
+              <button class="destination__tab text--link text--purple" type="button" data-destination-tab="Titan">Titan</button>
             </div>
-            <h3 class="destination__subtitle heading--lg">Moon</h3>
-            <p class="destination__desc text text--purple">See our planet as you’ve never seen it before. A perfect relaxing trip away to help 
+            <h3 class="destination__subtitle heading--lg" data-destination-title>Moon</h3>
+            <p class="destination__desc text text--purple" data-destination-desc>See our planet as you’ve never seen it before. A perfect relaxing trip away to help 
               regain perspective and come back refreshed. While you’re there, take in some history 
               by visiting the Luna 2 and Apollo 11 landing sites.</p>
             <div class="destination__separator"></div>
             <div class="destination__details">
               <div class="destination__details-distance">
                 <h4 class="destination__details-subheading text--sub-sm text--purple text--uppercase">Avg. distance</h4>
-                <p class="destination__details-desc text text--sub-big text--uppercase">384,400 km</p>
+                <p class="destination__details-desc text text--sub-big text--uppercase" data-destination-distance>384,400 km</p>
               </div>
               <div class="destination__details-time">
                 <h4 class="destination__details-subheading text--sub-sm text--purple text--uppercase">Est. travel time</h4>
-                <p class="destination__details-desc text text--sub-big text--uppercase">3 days</p>
+                <p class="destination__details-desc text text--sub-big text--uppercase" data-destination-time>3 days</p>
               </div>
             </div>
           </div>
