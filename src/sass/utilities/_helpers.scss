@@ -33,6 +33,9 @@
         font-family: $ff-secondary;
         font-size: clamp(1rem, 0.659rem + 1.455vw, 1.75rem);
         letter-spacing: 0.2969rem;
+    }
+
+    &--purple {
         color: $c-purple-light;
     }
 }
