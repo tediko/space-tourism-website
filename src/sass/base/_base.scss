@@ -3,4 +3,5 @@
 body {
     min-height: 100vh;
     font-family: $ff-secondary;
+    counter-reset: section;
 }
