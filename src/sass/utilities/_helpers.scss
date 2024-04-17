@@ -127,3 +127,54 @@
         transform: translateX(100%);
     }
 }
+
+@keyframes destination-title-out {
+    to {
+        transform: translate(10%);
+        opacity: 0;
+    }
+}
+
+@keyframes destination-title-in {
+    0% {
+        transform: translate(10%);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes destination-fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes destination-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+@keyframes destination-planet-out {
+    to {
+        opacity: 0;
+        transform: scale(0.8) rotate(10deg) translateX(50px);
+    }
+}
+
+@keyframes destination-planet-in {
+    0% {
+        transform: scale(0.8) rotate(-10deg) translateX(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) rotate(0) translateX(0);
+        opacity: 1;
+    }
+}
