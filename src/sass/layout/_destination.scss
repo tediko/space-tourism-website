@@ -1,0 +1,180 @@
+@use '../utilities' as *;
+
+/* Destination */
+.destination {
+    $root: &;
+
+    padding-top: clamp(5.5rem, 1.977rem + 15.03vw, 13.25rem);
+    background-image: url('/destination/background-destination-mobile.jpg');
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+
+    @include breakpoint('md') {
+        background-image: url('/destination/background-destination-tablet.jpg');
+    }
+
+    @include breakpoint('md') {
+        background-image: url('/destination/background-destination-desktop.jpg');
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-inline: clamp(1.5rem, 0.548rem + 4.061vw, 2.5rem);
+        padding-bottom: 2rem;
+
+        @include breakpoint('lg') {
+            align-items: unset;
+            max-width: 74.375rem;
+            margin: 0 auto;
+        }
+    }
+
+    &__title {
+        position: relative;
+        margin-bottom: clamp(2rem, 0.096rem + 8.122vw, 4rem);
+        padding-left: 2.3rem;
+
+        @include breakpoint('md') {
+            align-self: start;
+        }
+
+        @include breakpoint('lg') {
+            padding-left: 3.375rem;
+        }
+
+        &::before {
+            position: absolute;
+            counter-increment: section;
+            content: "0"counter(section);
+            top: 0;
+            left: 0;
+            font-weight: 700;
+            opacity: 0.25;
+        }
+    }
+
+    &__content {
+        @include breakpoint('lg') {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+        }
+    }
+
+    &__planet-img {
+        margin: 0 auto;
+        margin-bottom: clamp(1.625rem, 0.019rem + 6.853vw, 3.313rem);
+        width: clamp(170px, 2.813rem + 33.333vw, 445px);
+        height: clamp(170px, 2.813rem + 33.333vw, 445px);
+
+        @include breakpoint('lg') {
+            margin: 0;
+            margin-left: 4rem;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include breakpoint('lg') {
+            align-items: start;
+        }
+    }
+
+    &__tabs {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: clamp(2rem, 1.432rem + 2.424vw, 3.25rem);
+    }
+
+    &__tab {
+        position: relative;
+        background-color: transparent;
+        border: none;
+
+        @include breakpoint('md') {
+            cursor: pointer;
+            transition: color 350ms ease-in-out;
+
+            &:hover {
+                color: $c-white;
+            }
+            
+            &:hover::before {
+                width: 100%;
+            }
+        }
+
+        &::before {
+            position: absolute;
+            content: '';
+            bottom: -0.9375rem;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: $c-white;
+            transition: width 350ms ease-in-out;
+        }
+
+        &.tab-active {
+            color: $c-white;
+        }
+
+        &.tab-active::before {
+            width: 100%;
+        }
+    }
+
+    &__subtitle {
+        @include breakpoint('lg') {
+            margin-bottom: 1.25rem;
+        }
+    }
+
+    &__desc {
+        text-align: center;
+        margin-bottom: clamp(2rem, 1.375rem + 2.667vw, 3.375rem);
+        max-width: 63ch;
+
+        @include breakpoint('md') {
+            max-width: 43ch;
+        }
+
+        @include breakpoint('lg') {
+            text-align: left;
+        }
+    }
+
+    &__separator {
+        width: 100%;
+        height: 1px;
+        background-color: $c-purple-light;
+        margin-bottom: 28px;
+        opacity: 0.3;
+    }
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+
+        @include breakpoint('md') {
+            flex-direction: row;
+            gap: 8rem;
+        }
+
+        @include breakpoint('lg') {
+            text-align: left;
+        }
+    }
+
+    &__details-subheading {
+        margin-bottom: 0.75rem;
+    }
+}
