@@ -6,6 +6,7 @@ const IMAGE_SELECTOR = document.querySelector('[data-crew-image]');
 const SUBHEADING_SELECTOR = document.querySelector('[data-crew-subheading]');
 const NAME_SELECTOR = document.querySelector('[data-crew-name]');
 const DESC_SELECTOR = document.querySelector('[data-crew-desc]');
+const CREW_CONTAINER_SELECTOR = document.querySelector('[data-crew-container]');
 
 // Flags
 let isActiveClass = 'is-active';
@@ -13,6 +14,8 @@ let animInClass = 'anim-in';
 let animOutClass = 'anim-out';
 let isChangingContent = false;
 let elementWithLongestAnimation = NAME_SELECTOR;
+let onMouseDownX;
+let currentTab = 0;
 
 // Handles tab change
 const handleTabChange = (target) => {
@@ -64,11 +67,40 @@ const updateContent = (newContent) => {
     IMAGE_SELECTOR.alt = newContent.images.alt;
 }
 
+// Handles mouse down/touch start event
+const handleMouseDown = (event) => {
+    if (isChangingContent) return;
+    onMouseDownX = event.clientX || event.changedTouches[0].pageX;
+    CREW_CONTAINER_SELECTOR.style.cursor = "grabbing";
+    event.preventDefault();
+}
+
+// Handles mouse up/touch end event
+const handleMouseUp = (event) => {
+    if (isChangingContent) return;
+    let onMouseUpX = event.clientX || event.changedTouches[0].pageX;
+    let offset = onMouseDownX - onMouseUpX;
+    let trigger = 150;
+    CREW_CONTAINER_SELECTOR.style.cursor = "grab";
+    CONTROLS_SELECTOR.forEach(tab => tab.classList.remove(isActiveClass));
+
+    if (offset > trigger && currentTab < crew.length - 1) {
+        currentTab++;
+        handleTabChange(currentTab);
+        CONTROLS_SELECTOR[currentTab].classList.add(isActiveClass);
+    } else if (offset < -trigger && currentTab > 0) {
+        currentTab--;
+        handleTabChange(currentTab);
+        CONTROLS_SELECTOR[currentTab].classList.add(isActiveClass);
+    }
+}
+
 // Event listeners
 export default CONTROLS_SELECTOR.forEach(tab => {
     tab.addEventListener('click', (event) => {
         let eventTarget = event.target;
         let tabTarget = eventTarget.dataset.crewControl;
+        currentTab = tabTarget;
         if (eventTarget.classList.contains(isActiveClass) || isChangingContent) return;
 
         CONTROLS_SELECTOR.forEach(tab => tab.classList.remove(isActiveClass));
@@ -76,3 +108,8 @@ export default CONTROLS_SELECTOR.forEach(tab => {
         handleTabChange(tabTarget);
     })
 })
+
+CREW_CONTAINER_SELECTOR.addEventListener('mousedown', handleMouseDown);
+CREW_CONTAINER_SELECTOR.addEventListener('trouchstart', handleMouseDown);
+CREW_CONTAINER_SELECTOR.addEventListener('mouseup', handleMouseUp);
+CREW_CONTAINER_SELECTOR.addEventListener('touchend', handleMouseUp);
