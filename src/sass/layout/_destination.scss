@@ -14,7 +14,7 @@
         background-image: url('/destination/background-destination-tablet.jpg');
     }
 
-    @include breakpoint('md') {
+    @include breakpoint('lg') {
         background-image: url('/destination/background-destination-desktop.jpg');
     }
 
