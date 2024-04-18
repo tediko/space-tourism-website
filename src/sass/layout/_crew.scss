@@ -9,7 +9,7 @@
     background-position: center;
     background-size: cover;
     min-height: 100vh;
-    overflow-y: hidden;
+    overflow: hidden;
 
     @include breakpoint('md') {
         background-image: url('/crew/background-crew-tablet.jpg');
@@ -76,25 +76,33 @@
 
     &__image-wrapper {
         border-bottom: 1px solid rgba($c-purple-light, 0.3);
+        height: 17.5rem;
 
         @include breakpoint('md') {
             order: 1;
             border-bottom: unset;
+            height: 21.875rem;
+        }
+
+        @include breakpoint('lg') {
+            height: unset;
         }
     }
 
     &__image {
-        width: clamp(177px, 3.727rem + 31.298vw, 300px);
+        height: 100%;
         margin: 0 auto;
-
-        @include breakpoint('md') {
-            width: 100%;
-            max-width: 370px;
-        }
         
         @include breakpoint('lg') {
-            max-width: unset;
             max-height: 650px;
+        }
+
+        &.anim-out {
+            animation: crew-image-out 700ms ease-in-out forwards;
+        }
+
+        &.anim-in {
+            animation: crew-image-in 700ms ease-in-out forwards;
         }
     }
 
@@ -113,13 +121,30 @@
     &__subheading {
         opacity: 0.5;
         margin-bottom: 0.5rem;
+
+        &.anim-out {
+            animation: crew-subheading-out 700ms ease-in-out forwards;
+        }
+
+        &.anim-in {
+            animation: crew-subheading-in 700ms ease-in-out forwards;
+        }
     }
 
     &__name {
         margin-bottom: 1rem;
+
+        &.anim-out {
+            animation: crew-name-out 700ms ease-in-out forwards;
+        }
+
+        &.anim-in {
+            animation: crew-name-in 700ms ease-in-out forwards;
+        }
     }
 
     &__desc {
+        min-height: 8.75rem;
         max-width: 63ch;
         margin: 0 auto;
 
@@ -130,6 +155,14 @@
         @include breakpoint('lg') {
             max-width: 44ch;
             margin: 0;
+        }
+
+        &.anim-out {
+            animation: crew-fade-out 700ms ease-in-out forwards;
+        }
+
+        &.anim-in {
+            animation: crew-fade-in 700ms ease-in-out forwards;
         }
     }
 
