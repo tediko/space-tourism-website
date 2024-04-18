@@ -1,0 +1,146 @@
+@use './variables' as *;
+
+/* Animation keyframes */
+@keyframes nav-in {
+    0% {
+        visibility: hidden;
+        transform: translateX(100%);
+    }
+    100% {
+        visibility: visible;
+        transform: translateX(0);
+    }
+}
+
+@keyframes nav-out {
+    0% {
+        visibility: visible;
+        transform: translateX(0);
+    }
+    100% {
+        visibility: hidden;
+        transform: translateX(100%);
+    }
+}
+
+@keyframes destination-title-out {
+    to {
+        transform: translate(10%);
+        opacity: 0;
+    }
+}
+
+@keyframes destination-title-in {
+    0% {
+        transform: translate(10%);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes destination-fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes destination-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes destination-planet-out {
+    to {
+        opacity: 0;
+        transform: scale(0.8) rotate(10deg) translateX(50px);
+    }
+}
+
+@keyframes destination-planet-in {
+    0% {
+        transform: scale(0.8) rotate(-10deg) translateX(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) rotate(0) translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes crew-name-out {
+    to {
+        transform: translate(-10%);
+        opacity: 0;
+    }
+}
+
+@keyframes crew-name-in {
+    0% {
+        transform: translate(-10%);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes crew-subheading-out {
+    to {
+        transform: translate(10%);
+        opacity: 0;
+    }
+}
+
+@keyframes crew-subheading-in {
+    0% {
+        transform: translate(10%);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 0.5;
+    }
+}
+
+@keyframes crew-fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes crew-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes crew-image-out {
+    to {
+        opacity: 0;
+        transform: scale(0.9) rotate(0) translateX(100px);
+    }
+}
+
+@keyframes crew-image-in {
+    0% {
+        transform: scale(0.9) rotate(-0) translateX(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) rotate(0) translateY(0);
+        opacity: 1;
+    }
+}
