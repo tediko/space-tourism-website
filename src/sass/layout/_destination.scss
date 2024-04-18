@@ -140,11 +140,11 @@
 
     &__subtitle {      
         &.anim-out {
-            animation: destination-title-out 500ms ease-in-out forwards;
+            animation: destination-title-out 700ms ease-in-out forwards;
         }
 
         &.anim-in {
-            animation: destination-title-in 500ms ease-in-out forwards;
+            animation: destination-title-in 700ms ease-in-out forwards;
         }
 
         @include breakpoint('lg') {
