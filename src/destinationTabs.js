@@ -2,7 +2,6 @@ import { destinations } from './data.json';
 
 // Selectors
 const TABS_SELECTOR = document.querySelectorAll('[data-destination-tab]');
-const CONTENT_CONTAINER_SELECTOR = document.querySelector('[data-destination-content]');
 const PLANET_SELECTOR = document.querySelector('[data-destination-planet]');
 const TITLE_SELECTOR = document.querySelector('[data-destination-title]');
 const DESC_SELECTOR = document.querySelector('[data-destination-desc]');
@@ -13,8 +12,8 @@ const TIME_SELECTOR = document.querySelector('[data-destination-time]');
 let tabActiveClass = 'tab-active';
 let animInClass = 'anim-in';
 let animOutClass = 'anim-out';
-let animationDuration = 500;
 let isChangingContent = false;
+let elementWithLongestAnimation = TITLE_SELECTOR;
 
 // Handles tab change
 const handleTabChange = (target) => {
@@ -23,17 +22,20 @@ const handleTabChange = (target) => {
     isChangingContent = true;
     manageAnimationClasses('out');
 
-    CONTENT_CONTAINER_SELECTOR.addEventListener('animationend', function contentOut() {
-        updateContent(targetContent);
-        manageAnimationClasses('in');
+    elementWithLongestAnimation.addEventListener('animationend', function contentOut(event) {
+        let eventTarget = event.target;
+        let hasAnimInClass = eventTarget.classList.contains(animInClass);
+        let hasAnimOutClass = eventTarget.classList.contains(animOutClass);
 
-        const transitionTimeout = setTimeout(() => {
+        if (hasAnimOutClass && !hasAnimInClass) {
+            updateContent(targetContent);
+            manageAnimationClasses('in');
+        }
+        if (hasAnimInClass && hasAnimOutClass) {
             manageAnimationClasses('remove');
             isChangingContent = false;
-            clearTimeout(transitionTimeout);
-            CONTENT_CONTAINER_SELECTOR.removeEventListener('animationend', contentOut);
-        }, (animationDuration - 50));
-        
+            elementWithLongestAnimation.removeEventListener('animationend', contentOut);
+        }        
     })
 }
 
