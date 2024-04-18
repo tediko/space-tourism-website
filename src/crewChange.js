@@ -67,7 +67,9 @@ const updateContent = (newContent) => {
     IMAGE_SELECTOR.alt = newContent.images.alt;
 }
 
-// Handles mouse down/touch start event
+
+// Checks where user clicked/touched on screen
+// and assigns that value to onMouseDownX variable
 const handleMouseDown = (event) => {
     if (isChangingContent) return;
     onMouseDownX = event.clientX || event.changedTouches[0].pageX;
@@ -75,7 +77,8 @@ const handleMouseDown = (event) => {
     event.preventDefault();
 }
 
-// Handles mouse up/touch end event
+// Checks when the user released click/touch and save position
+// If user moved mouse more than trigger move to the next/prev content.
 const handleMouseUp = (event) => {
     if (isChangingContent) return;
     let onMouseUpX = event.clientX || event.changedTouches[0].pageX;
