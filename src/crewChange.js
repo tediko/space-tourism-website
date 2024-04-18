@@ -86,7 +86,7 @@ const handleMouseUp = (event) => {
     let trigger = 150;
     CREW_CONTAINER_SELECTOR.style.cursor = "grab";
     
-    if (offset > trigger || offset < -trigger) {
+    if (offset > trigger && currentTab < crew.length - 1 || offset < -trigger && currentTab > 0) {
         CONTROLS_SELECTOR.forEach(tab => tab.classList.remove(isActiveClass));
     }
 
