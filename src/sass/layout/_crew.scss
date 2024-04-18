@@ -1,0 +1,139 @@
+@use '../utilities' as *;
+
+/* Crew */
+.crew {
+    $root: &;
+
+    padding-top: clamp(5.5rem, 1.977rem + 15.03vw, 13.25rem);
+    background-image: url('/crew/background-crew-mobile.jpg');
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+
+    @include breakpoint('md') {
+        background-image: url('/crew/background-crew-tablet.jpg');
+    }
+
+    @include breakpoint('md') {
+        background-image: url('/crew/background-crew-desktop.jpg');
+    }
+
+    &__container {
+        display: grid;
+        justify-items: center;
+        padding-inline: clamp(1.5rem, 0.548rem + 4.061vw, 2.5rem);
+
+        @include breakpoint('md') {
+            justify-items: unset;
+            grid-template-rows: auto 100vh;
+        }
+
+        @include breakpoint('lg') {
+            max-width: 74.375rem;
+            margin: 0 auto;
+            grid-template-rows: unset;
+        }
+    }
+
+    &__title {
+        position: relative;
+        padding-left: 2.3rem;
+        margin-bottom: 2rem;
+
+        @include breakpoint('lg') {
+            padding-left: 3.375rem;
+            grid-row: 1;
+            grid-column: 1;
+            margin-bottom: 0;
+        }
+
+        &::before {
+            position: absolute;
+            counter-increment: section;
+            content: "0"counter(section);
+            top: 0;
+            left: 0;
+            font-weight: 700;
+            opacity: 0.25;
+        }
+    }
+
+    &__slider {
+        @include breakpoint('lg') {
+            grid-row: 1;
+            grid-column: 1;
+        }
+    }
+
+    &__slider-wrapper {
+        @include breakpoint('md') {
+            height: 100%;
+        }
+    }
+
+    &__slide {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        @include breakpoint('md') {
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        @include breakpoint('lg') {
+            flex-direction: row;
+            align-items: center;
+            text-align: left;
+        }
+    }
+
+    &__image-wrapper {
+        margin-bottom: 4.375rem;
+        border-bottom: 1px solid rgba($c-purple-light, 0.3);
+
+        @include breakpoint('md') {
+            order: 1;
+            margin-bottom: 0;
+            border-bottom: unset;
+        }
+    }
+
+    &__image {
+        width: clamp(177px, 3.727rem + 31.298vw, 300px);
+        margin: 0 auto;
+
+        @include breakpoint('md') {
+            width: clamp(456px, 16.01rem + 25.986vw, 568px);
+        }
+    }
+
+    &__info {
+        @include breakpoint('md') {
+            order: 0;
+        }
+    }
+
+    &__subheading {
+        opacity: 0.5;
+        margin-bottom: 0.5rem;
+    }
+
+    &__name {
+        margin-bottom: 1rem;
+    }
+
+    &__desc {
+        max-width: 63ch;
+        margin: 0 auto;
+
+        @include breakpoint('md') {
+            max-width: 51ch;
+        }
+        
+        @include breakpoint('lg') {
+            max-width: 44ch;
+            margin: 0;
+        }
+    }
+}
