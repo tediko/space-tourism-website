@@ -1,7 +1,7 @@
 import { destinations } from './data.json';
 
 // Selectors
-const TABS_SELECTOR = document.querySelectorAll('[data-destination-tab]');
+const tabsContainer = document.querySelector('[data-destination-tabs]');
 const PLANET_SELECTOR = document.querySelector('[data-destination-planet]');
 const TITLE_SELECTOR = document.querySelector('[data-destination-title]');
 const DESC_SELECTOR = document.querySelector('[data-destination-desc]');
@@ -68,14 +68,14 @@ const updateContent = (newContent) => {
 }
 
 // Event listeners
-export default TABS_SELECTOR.forEach(tab => {
-    tab.addEventListener('click', (event) => {
-        let eventTarget = event.target;
-        let tabTarget = eventTarget.dataset.destinationTab;
-        if (eventTarget.classList.contains(tabActiveClass) || isChangingContent) return;
+export default tabsContainer.addEventListener('click', (event) => {
+    let eventTarget = event.target;
+    let tabTarget = eventTarget.dataset.destinationTab;
+    let tabElements = [...tabsContainer.children];
+    
+    if (eventTarget.classList.contains(tabActiveClass) || isChangingContent) return;
 
-        TABS_SELECTOR.forEach(tab => tab.classList.remove(tabActiveClass));
-        eventTarget.classList.add(tabActiveClass);
-        handleTabChange(tabTarget);
-    })
+    tabElements.forEach(tab => tab.classList.remove(tabActiveClass));
+    eventTarget.classList.add(tabActiveClass);
+    handleTabChange(tabTarget);
 })
