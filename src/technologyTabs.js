@@ -1,21 +1,20 @@
 import { technology } from './data.json';
 
 // Selectors
-const TABS_SELECTOR = document.querySelectorAll('[data-technology-tab]');
-const CONTENT_CONTAINER_SELECTOR = document.querySelector('[data-technology-content]');
-const IMAGE_SELECTOR = document.querySelector('[data-technology-image-mobile]');
-const IMAGE_SRCSET_SELECTOR = document.querySelector('[data-technology-image-desktop]');
-const SUBHEADING_SELECTOR = document.querySelector('[data-technology-subheading]');
-const NAME_SELECTOR = document.querySelector('[data-technology-name]');
-const DESC_SELECTOR = document.querySelector('[data-technology-desc]');
-const TECHNOLOGY_CONTAINER_SELECTOR = document.querySelector('[data-technology-container]');
+const tabsContainer = document.querySelectorAll('[data-technology-tab]');
+const contentContainer = document.querySelector('[data-technology-content]');
+const imageElement = document.querySelector('[data-technology-image-mobile]');
+const imageSrcsetElement = document.querySelector('[data-technology-image-desktop]');
+const nameElement = document.querySelector('[data-technology-name]');
+const descriptionElement = document.querySelector('[data-technology-desc]');
+const technologyContainer = document.querySelector('[data-technology-container]');
 
 // Flags
 let isActiveClass = 'is-active';
 let animInClass = 'anim-in';
 let animOutClass = 'anim-out';
 let isChangingContent = false;
-let elementWithLongestAnimation = CONTENT_CONTAINER_SELECTOR;
+let elementWithLongestAnimation = contentContainer;
 let onMouseDownY;
 let currentTab = 0;
 
@@ -47,21 +46,21 @@ const handleTabChange = (target) => {
 // state parameter can be either: 'in', 'out' or 'remove'
 const manageAnimationClasses = (state) => {
     if (state === 'in' || state === 'out' & state != 'remove') {
-        CONTENT_CONTAINER_SELECTOR.classList.add(state === 'in' ? animInClass : animOutClass);
-        IMAGE_SELECTOR.classList.add(state === 'in' ? animInClass : animOutClass);
+        contentContainer.classList.add(state === 'in' ? animInClass : animOutClass);
+        imageElement.classList.add(state === 'in' ? animInClass : animOutClass);
     } else if (state === "remove") {
-        CONTENT_CONTAINER_SELECTOR.classList.remove(animInClass, animOutClass);
-        IMAGE_SELECTOR.classList.remove(animInClass, animOutClass);
+        contentContainer.classList.remove(animInClass, animOutClass);
+        imageElement.classList.remove(animInClass, animOutClass);
     }
 }
 
 // Updates content
 const updateContent = (newContent) => {
-    NAME_SELECTOR.innerHTML = newContent.name;
-    DESC_SELECTOR.innerHTML = newContent.description;
-    IMAGE_SELECTOR.src = newContent.images.mobile;
-    IMAGE_SRCSET_SELECTOR.srcset = newContent.images.desktop;
-    IMAGE_SELECTOR.alt = newContent.images.alt;
+    nameElement.innerHTML = newContent.name;
+    descriptionElement.innerHTML = newContent.description;
+    imageElement.src = newContent.images.mobile;
+    imageSrcsetElement.srcset = newContent.images.desktop;
+    imageElement.alt = newContent.images.alt;
 }
 
 
@@ -70,7 +69,7 @@ const updateContent = (newContent) => {
 const handleMouseDown = (event) => {
     if (isChangingContent) return;
     onMouseDownY = event.clientY || event.changedTouches[0].pageY;
-    TECHNOLOGY_CONTAINER_SELECTOR.style.cursor = "grabbing";
+    technologyContainer.style.cursor = "grabbing";
     event.preventDefault();
 }
 
@@ -81,47 +80,47 @@ const handleMouseUp = (event) => {
     let onMouseUpY = event.clientY || event.changedTouches[0].pageY;
     let offset = onMouseDownY - onMouseUpY;
     let trigger = 150;
-    TECHNOLOGY_CONTAINER_SELECTOR.style.cursor = "grab";
+    technologyContainer.style.cursor = "grab";
     
     if (offset > trigger || offset < -trigger) {
-        TABS_SELECTOR.forEach(tab => tab.classList.remove(isActiveClass));
+        tabsContainer.forEach(tab => tab.classList.remove(isActiveClass));
     }
 
     if (offset > trigger && currentTab < technology.length - 1) {
         currentTab++;
         handleTabChange(currentTab);
-        TABS_SELECTOR[currentTab].classList.add(isActiveClass);
+        tabsContainer[currentTab].classList.add(isActiveClass);
     } else if (offset < -trigger && currentTab > 0) {
         currentTab--;
         handleTabChange(currentTab);
-        TABS_SELECTOR[currentTab].classList.add(isActiveClass);
+        tabsContainer[currentTab].classList.add(isActiveClass);
     } else if (offset > trigger && currentTab == technology.length - 1) {
         currentTab = 0;
         handleTabChange(currentTab);
-        TABS_SELECTOR[currentTab].classList.add(isActiveClass);
+        tabsContainer[currentTab].classList.add(isActiveClass);
     } else if (offset < -trigger && currentTab == 0) {
         currentTab = technology.length - 1;
         handleTabChange(currentTab);
-        TABS_SELECTOR[currentTab].classList.add(isActiveClass);
+        tabsContainer[currentTab].classList.add(isActiveClass);
     }
 
 }
 
 // Event listeners
-export default TABS_SELECTOR.forEach(tab => {
+export default tabsContainer.forEach(tab => {
     tab.addEventListener('click', (event) => {
         let eventTarget = event.target;
         let tabTarget = eventTarget.dataset.technologyTab;
         currentTab = tabTarget;
         if (eventTarget.classList.contains(isActiveClass) || isChangingContent) return;
 
-        TABS_SELECTOR.forEach(tab => tab.classList.remove(isActiveClass));
+        tabsContainer.forEach(tab => tab.classList.remove(isActiveClass));
         eventTarget.classList.add(isActiveClass);
         handleTabChange(tabTarget);
     })
 })
 
-TECHNOLOGY_CONTAINER_SELECTOR.addEventListener('mousedown', handleMouseDown);
-TECHNOLOGY_CONTAINER_SELECTOR.addEventListener('trouchstart', handleMouseDown);
-TECHNOLOGY_CONTAINER_SELECTOR.addEventListener('mouseup', handleMouseUp);
-TECHNOLOGY_CONTAINER_SELECTOR.addEventListener('touchend', handleMouseUp);
+technologyContainer.addEventListener('mousedown', handleMouseDown);
+technologyContainer.addEventListener('trouchstart', handleMouseDown);
+technologyContainer.addEventListener('mouseup', handleMouseUp);
+technologyContainer.addEventListener('touchend', handleMouseUp);
