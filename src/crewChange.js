@@ -18,11 +18,10 @@ let onMouseDownX;
 let currentTab = 0;
 
 // Handles tab change
-const handleTabChange = (target) => {
-    let targetContent = crew.find((element) => element.id == target);
-    console.log(targetContent);
+const handleTabChange = (targetContent) => {
     if (isChangingContent) return;
     isChangingContent = true;
+
     manageAnimationClasses('out');
 
     elementWithLongestAnimation.addEventListener('animationend', function contentOut(event) {
@@ -86,34 +85,60 @@ const handleMouseUp = (event) => {
     let offset = onMouseDownX - onMouseUpX;
     let trigger = 150;
     contentContainer.style.cursor = "grab";
-    
-    if (offset > trigger && currentTab < crew.length - 1 || offset < -trigger && currentTab > 0) {
+    let isTriggered = false;
+
+    // Checks if user offset is higher than trigger.
+    if (offset > trigger || offset < -trigger) {
         controlElements.forEach(tab => tab.classList.remove(isActiveClass));
+        isTriggered = true;
     }
 
     if (offset > trigger && currentTab < crew.length - 1) {
         currentTab++;
-        handleTabChange(currentTab);
-        controlElements[currentTab].classList.add(isActiveClass);
     } else if (offset < -trigger && currentTab > 0) {
         currentTab--;
-        handleTabChange(currentTab);
+    } else if (offset > trigger && currentTab == crew.length - 1) {
+        currentTab = 0;
+    } else if (offset < -trigger && currentTab == 0) {
+        currentTab = crew.length - 1;
+    }
+    
+    if (isTriggered) {
+        let targetContent = crew.find((element) => element.id == currentTab);
+    
+        // Handles edge cases or errors that may occur, such as when the target content is not found 
+        if (!targetContent) {
+            console.error(`Content for control "${currentTab}" not found.`);
+            return;
+        }
+
+        handleTabChange(targetContent);
         controlElements[currentTab].classList.add(isActiveClass);
+        isTriggered = false;
     }
 }
 
 // Event listeners
 export default controlsContainer.addEventListener('click', (event) => {
         let eventTarget = event.target;
-        let tabTarget = eventTarget.dataset.crewControl;
+        let controlTarget = eventTarget.dataset.crewControl;
         let controlElements = [...controlsContainer.children];
-        currentTab = tabTarget;
+        let targetContent = crew.find((element) => element.id == controlTarget);
+    
+        // Handles edge cases or errors that may occur, such as when the target content is not found 
+        if (!targetContent) {
+            console.error(`Content for control "${controlTarget}" not found.`);
+            return;
+        }
+
+        currentTab = controlTarget;
 
         if (eventTarget.classList.contains(isActiveClass) || isChangingContent) return;
 
         controlElements.forEach(tab => tab.classList.remove(isActiveClass));
         eventTarget.classList.add(isActiveClass);
-        handleTabChange(tabTarget);
+        handleTabChange(targetContent);
+        console.log(targetContent);
     })
 
 contentContainer.addEventListener('mousedown', handleMouseDown);
