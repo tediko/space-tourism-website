@@ -16,7 +16,7 @@ let isChangingContent = false;
 let elementWithLongestAnimation = titleElement;
 
 // Handles tab change
-const handleTabChange = (target) => {
+const handleTabClick = (target) => {
     let targetContent = destinations.find((element) => element.name === target);
     if (isChangingContent) return;
     isChangingContent = true;
@@ -77,5 +77,5 @@ export default tabsContainer.addEventListener('click', (event) => {
 
     tabElements.forEach(tab => tab.classList.remove(tabActiveClass));
     eventTarget.classList.add(tabActiveClass);
-    handleTabChange(tabTarget);
+    handleTabClick(tabTarget);
 })
