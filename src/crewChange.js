@@ -93,6 +93,8 @@ const handleMouseUp = (event) => {
         isTriggered = true;
     }
 
+    // Checks which direction was triggered and which control element is active.
+    // Based on that it increment or decremenet currentControl value
     if (offset > trigger && currentControl < crew.length - 1) {
         currentControl++;
     } else if (offset < -trigger && currentControl > 0) {
