@@ -1,0 +1,141 @@
+@use '../utilities' as *;
+
+/* Technology */
+.technology {
+    $root: &;
+
+    padding-top: clamp(5.5rem, 1.977rem + 15.03vw, 13.25rem);
+    background-image: url('/technology/background-technology-mobile.jpg');
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    overflow: hidden;
+
+    @include breakpoint('md') {
+        background-image: url('/technology/background-technology-tablet.jpg');
+    }
+
+    @include breakpoint('lg') {
+        background-image: url('/technology/background-technology-desktop.jpg');
+    }
+
+    &__container {
+        display: grid;
+        justify-items: center;
+        gap: 2.3rem;
+
+        @include breakpoint('md') {
+            gap: 3.75rem;
+            max-width: 74.375rem;
+            margin: 0 auto;
+            padding-inline: 2.5rem;
+        }
+
+        @include breakpoint('lg') {
+            grid-template-columns: min-content max-content auto;
+            grid-template-rows: auto 527px;
+            justify-items: unset;
+            align-items: center;
+            row-gap: 1.625rem;
+            column-gap: 5rem;
+        }
+    }
+
+    &__title {
+        position: relative;
+        padding-left: 2.3rem;
+
+        @include breakpoint('lg') {
+            padding-left: 3.375rem;
+            margin-bottom: 0;
+            grid-row: 1;
+            grid-column: span 2;
+        }
+
+        &::before {
+            position: absolute;
+            counter-increment: section;
+            content: "0"counter(section);
+            top: 0;
+            left: 0;
+            font-weight: 700;
+            opacity: 0.25;
+        }
+    }
+
+    &__image-wrapper {
+        @include breakpoint('lg') {
+            position: relative;
+            grid-row: 2;
+            grid-column: 3;
+            height: 100%;
+        }
+    }
+
+    &__image {
+        @include breakpoint('lg') {
+            max-width: unset;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    &__tabs {
+        display: flex;
+        gap: clamp(1rem, 0.422rem + 2.465vw, 2rem);
+
+        @include breakpoint('lg') {
+            flex-direction: column;
+            grid-row: 2;
+        }
+    }
+
+    &__tab {
+        @extend .heading--md;
+        width: clamp(40px, 1.055rem + 6.163vw, 80px);
+        height: clamp(40px, 1.055rem + 6.163vw, 80px);
+        border: 1px solid rgba($c-white, 0.25);
+        background-color: transparent;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 350ms ease-in-out,
+                    color 350ms ease-in-out;
+
+        @include breakpoint('md') {
+            &:hover {
+                background-color: $c-white;
+                color: $c-black; 
+            }
+        }
+        &.is-active {
+            background-color: $c-white;
+            color: $c-black;
+        }
+    }
+
+    &__content {
+        text-align: center;
+
+        @include breakpoint('lg') {
+            grid-row: 2;
+            text-align: left;
+        }
+    }
+
+    &__subheading {
+        margin-bottom: clamp(0.563rem, 0.145rem + 1.781vw, 1rem);
+    }
+
+    &__name {
+        margin-bottom: 1rem;
+    }
+
+    &__desc {
+        max-width: 48.5ch;
+
+        @include breakpoint('lg') {
+            max-width: 43.6ch;
+        }
+    }
+}
