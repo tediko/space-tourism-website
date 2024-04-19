@@ -16,10 +16,10 @@ let isChangingContent = false;
 let elementWithLongestAnimation = titleElement;
 
 // Handles tab change
-const handleTabClick = (target) => {
-    let targetContent = destinations.find((element) => element.name === target);
+const handleTabClick = (targetContent) => {
     if (isChangingContent) return;
     isChangingContent = true;
+
     manageAnimationClasses('out');
 
     elementWithLongestAnimation.addEventListener('animationend', function contentOut(event) {
@@ -72,10 +72,17 @@ export default tabsContainer.addEventListener('click', (event) => {
     let eventTarget = event.target;
     let tabTarget = eventTarget.dataset.destinationTab;
     let tabElements = [...tabsContainer.children];
+    let targetContent = destinations.find((element) => element.name === tabTarget);
+    
+    // Handles edge cases or errors that may occur, such as when the target content is not found 
+    if (!targetContent) {
+        console.error(`Content for tab "${target}" not found.`);
+        return;
+    }
 
     if (eventTarget.classList.contains(tabActiveClass) || isChangingContent) return;
 
     tabElements.forEach(tab => tab.classList.remove(tabActiveClass));
     eventTarget.classList.add(tabActiveClass);
-    handleTabClick(tabTarget);
+    handleTabClick(targetContent);
 })
