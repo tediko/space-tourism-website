@@ -1,19 +1,19 @@
 import { crew } from './data.json';
 
 // Selectors
-const CONTROLS_SELECTOR = document.querySelectorAll('[data-crew-control]');
-const IMAGE_SELECTOR = document.querySelector('[data-crew-image]');
-const SUBHEADING_SELECTOR = document.querySelector('[data-crew-subheading]');
-const NAME_SELECTOR = document.querySelector('[data-crew-name]');
-const DESC_SELECTOR = document.querySelector('[data-crew-desc]');
-const CREW_CONTAINER_SELECTOR = document.querySelector('[data-crew-container]');
+const controlElements = document.querySelectorAll('[data-crew-control]');
+const imageElement = document.querySelector('[data-crew-image]');
+const subheadingElement = document.querySelector('[data-crew-subheading]');
+const nameElement = document.querySelector('[data-crew-name]');
+const descriptionElement = document.querySelector('[data-crew-desc]');
+const contentContainer = document.querySelector('[data-crew-container]');
 
 // Flags
 let isActiveClass = 'is-active';
 let animInClass = 'anim-in';
 let animOutClass = 'anim-out';
 let isChangingContent = false;
-let elementWithLongestAnimation = NAME_SELECTOR;
+let elementWithLongestAnimation = nameElement;
 let onMouseDownX;
 let currentTab = 0;
 
@@ -46,25 +46,25 @@ const handleTabChange = (target) => {
 // state parameter can be either: 'in', 'out' or 'remove'
 const manageAnimationClasses = (state) => {
     if (state === 'in' || state === 'out' & state != 'remove') {
-        SUBHEADING_SELECTOR.classList.add(state === 'in' ? animInClass : animOutClass);
-        DESC_SELECTOR.classList.add(state === 'in' ? animInClass : animOutClass);
-        NAME_SELECTOR.classList.add(state === 'in' ? animInClass : animOutClass);
-        IMAGE_SELECTOR.classList.add(state === 'in' ? animInClass : animOutClass);
+        subheadingElement.classList.add(state === 'in' ? animInClass : animOutClass);
+        descriptionElement.classList.add(state === 'in' ? animInClass : animOutClass);
+        nameElement.classList.add(state === 'in' ? animInClass : animOutClass);
+        imageElement.classList.add(state === 'in' ? animInClass : animOutClass);
     } else if (state === "remove") {
-        SUBHEADING_SELECTOR.classList.remove(animInClass, animOutClass);
-        DESC_SELECTOR.classList.remove(animInClass, animOutClass);
-        NAME_SELECTOR.classList.remove(animInClass, animOutClass);
-        IMAGE_SELECTOR.classList.remove(animInClass, animOutClass);
+        subheadingElement.classList.remove(animInClass, animOutClass);
+        descriptionElement.classList.remove(animInClass, animOutClass);
+        nameElement.classList.remove(animInClass, animOutClass);
+        imageElement.classList.remove(animInClass, animOutClass);
     }
 }
 
 // Updates content
 const updateContent = (newContent) => {
-    NAME_SELECTOR.innerHTML = newContent.name;
-    SUBHEADING_SELECTOR.innerHTML = newContent.role;
-    DESC_SELECTOR.innerHTML = newContent.bio;
-    IMAGE_SELECTOR.src = newContent.images.webp;
-    IMAGE_SELECTOR.alt = newContent.images.alt;
+    nameElement.innerHTML = newContent.name;
+    subheadingElement.innerHTML = newContent.role;
+    descriptionElement.innerHTML = newContent.bio;
+    imageElement.src = newContent.images.webp;
+    imageElement.alt = newContent.images.alt;
 }
 
 
@@ -73,7 +73,7 @@ const updateContent = (newContent) => {
 const handleMouseDown = (event) => {
     if (isChangingContent) return;
     onMouseDownX = event.clientX || event.changedTouches[0].pageX;
-    CREW_CONTAINER_SELECTOR.style.cursor = "grabbing";
+    contentContainer.style.cursor = "grabbing";
     event.preventDefault();
 }
 
@@ -84,38 +84,38 @@ const handleMouseUp = (event) => {
     let onMouseUpX = event.clientX || event.changedTouches[0].pageX;
     let offset = onMouseDownX - onMouseUpX;
     let trigger = 150;
-    CREW_CONTAINER_SELECTOR.style.cursor = "grab";
+    contentContainer.style.cursor = "grab";
     
     if (offset > trigger && currentTab < crew.length - 1 || offset < -trigger && currentTab > 0) {
-        CONTROLS_SELECTOR.forEach(tab => tab.classList.remove(isActiveClass));
+        controlElements.forEach(tab => tab.classList.remove(isActiveClass));
     }
 
     if (offset > trigger && currentTab < crew.length - 1) {
         currentTab++;
         handleTabChange(currentTab);
-        CONTROLS_SELECTOR[currentTab].classList.add(isActiveClass);
+        controlElements[currentTab].classList.add(isActiveClass);
     } else if (offset < -trigger && currentTab > 0) {
         currentTab--;
         handleTabChange(currentTab);
-        CONTROLS_SELECTOR[currentTab].classList.add(isActiveClass);
+        controlElements[currentTab].classList.add(isActiveClass);
     }
 }
 
 // Event listeners
-export default CONTROLS_SELECTOR.forEach(tab => {
+export default controlElements.forEach(tab => {
     tab.addEventListener('click', (event) => {
         let eventTarget = event.target;
         let tabTarget = eventTarget.dataset.crewControl;
         currentTab = tabTarget;
         if (eventTarget.classList.contains(isActiveClass) || isChangingContent) return;
 
-        CONTROLS_SELECTOR.forEach(tab => tab.classList.remove(isActiveClass));
+        controlElements.forEach(tab => tab.classList.remove(isActiveClass));
         eventTarget.classList.add(isActiveClass);
         handleTabChange(tabTarget);
     })
 })
 
-CREW_CONTAINER_SELECTOR.addEventListener('mousedown', handleMouseDown);
-CREW_CONTAINER_SELECTOR.addEventListener('trouchstart', handleMouseDown);
-CREW_CONTAINER_SELECTOR.addEventListener('mouseup', handleMouseUp);
-CREW_CONTAINER_SELECTOR.addEventListener('touchend', handleMouseUp);
+contentContainer.addEventListener('mousedown', handleMouseDown);
+contentContainer.addEventListener('trouchstart', handleMouseDown);
+contentContainer.addEventListener('mouseup', handleMouseUp);
+contentContainer.addEventListener('touchend', handleMouseUp);
