@@ -1,7 +1,7 @@
 import { crew } from './data.json';
 
 // Selectors
-const controlElements = document.querySelectorAll('[data-crew-control]');
+const controlsContainer = document.querySelector('[data-crew-controls]');
 const imageElement = document.querySelector('[data-crew-image]');
 const subheadingElement = document.querySelector('[data-crew-subheading]');
 const nameElement = document.querySelector('[data-crew-name]');
@@ -81,6 +81,7 @@ const handleMouseDown = (event) => {
 // If user moved mouse more than trigger move to the next/prev content.
 const handleMouseUp = (event) => {
     if (isChangingContent) return;
+    let controlElements = [...controlsContainer.children];
     let onMouseUpX = event.clientX || event.changedTouches[0].pageX;
     let offset = onMouseDownX - onMouseUpX;
     let trigger = 150;
@@ -102,18 +103,18 @@ const handleMouseUp = (event) => {
 }
 
 // Event listeners
-export default controlElements.forEach(tab => {
-    tab.addEventListener('click', (event) => {
+export default controlsContainer.addEventListener('click', (event) => {
         let eventTarget = event.target;
         let tabTarget = eventTarget.dataset.crewControl;
+        let controlElements = [...controlsContainer.children];
         currentTab = tabTarget;
+
         if (eventTarget.classList.contains(isActiveClass) || isChangingContent) return;
 
         controlElements.forEach(tab => tab.classList.remove(isActiveClass));
         eventTarget.classList.add(isActiveClass);
         handleTabChange(tabTarget);
     })
-})
 
 contentContainer.addEventListener('mousedown', handleMouseDown);
 contentContainer.addEventListener('trouchstart', handleMouseDown);
