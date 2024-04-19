@@ -2,18 +2,18 @@ import { destinations } from './data.json';
 
 // Selectors
 const tabsContainer = document.querySelector('[data-destination-tabs]');
-const PLANET_SELECTOR = document.querySelector('[data-destination-planet]');
-const TITLE_SELECTOR = document.querySelector('[data-destination-title]');
-const DESC_SELECTOR = document.querySelector('[data-destination-desc]');
-const DISTANCE_SELECTOR = document.querySelector('[data-destination-distance]');
-const TIME_SELECTOR = document.querySelector('[data-destination-time]');
+const planetImageElement = document.querySelector('[data-destination-planet]');
+const titleElement = document.querySelector('[data-destination-title]');
+const descriptionElement = document.querySelector('[data-destination-desc]');
+const distanceElement = document.querySelector('[data-destination-distance]');
+const timeElement = document.querySelector('[data-destination-time]');
 
 // Flags
 let tabActiveClass = 'tab-active';
 let animInClass = 'anim-in';
 let animOutClass = 'anim-out';
 let isChangingContent = false;
-let elementWithLongestAnimation = TITLE_SELECTOR;
+let elementWithLongestAnimation = titleElement;
 
 // Handles tab change
 const handleTabChange = (target) => {
@@ -43,28 +43,28 @@ const handleTabChange = (target) => {
 // state parameter can be either: 'in', 'out' or 'remove'
 const manageAnimationClasses = (state) => {
     if (state === 'in' || state === 'out' & state != 'remove') {
-        TITLE_SELECTOR.classList.add(state === 'in' ? animInClass : animOutClass);
-        DESC_SELECTOR.classList.add(state === 'in' ? animInClass : animOutClass);
-        DISTANCE_SELECTOR.classList.add(state === 'in' ? animInClass : animOutClass);
-        TIME_SELECTOR.classList.add(state === 'in' ? animInClass : animOutClass);
-        PLANET_SELECTOR.classList.add(state === 'in' ? animInClass : animOutClass);
+        titleElement.classList.add(state === 'in' ? animInClass : animOutClass);
+        descriptionElement.classList.add(state === 'in' ? animInClass : animOutClass);
+        distanceElement.classList.add(state === 'in' ? animInClass : animOutClass);
+        timeElement.classList.add(state === 'in' ? animInClass : animOutClass);
+        planetImageElement.classList.add(state === 'in' ? animInClass : animOutClass);
     } else if (state === "remove") {
-        TITLE_SELECTOR.classList.remove(animInClass, animOutClass);
-        DESC_SELECTOR.classList.remove(animInClass, animOutClass);
-        DISTANCE_SELECTOR.classList.remove(animInClass, animOutClass);
-        TIME_SELECTOR.classList.remove(animInClass, animOutClass);
-        PLANET_SELECTOR.classList.remove(animInClass, animOutClass);
+        titleElement.classList.remove(animInClass, animOutClass);
+        descriptionElement.classList.remove(animInClass, animOutClass);
+        distanceElement.classList.remove(animInClass, animOutClass);
+        timeElement.classList.remove(animInClass, animOutClass);
+        planetImageElement.classList.remove(animInClass, animOutClass);
     }
 }
 
 // Updates content
 const updateContent = (newContent) => {
-    TITLE_SELECTOR.innerHTML = newContent.name;
-    DESC_SELECTOR.innerHTML = newContent.description;
-    DISTANCE_SELECTOR.innerHTML = newContent.distance;
-    TIME_SELECTOR.innerHTML = newContent.travel;
-    PLANET_SELECTOR.src = newContent.images.webp;
-    PLANET_SELECTOR.alt = newContent.images.alt;
+    titleElement.innerHTML = newContent.name;
+    descriptionElement.innerHTML = newContent.description;
+    distanceElement.innerHTML = newContent.distance;
+    timeElement.innerHTML = newContent.travel;
+    planetImageElement.src = newContent.images.webp;
+    planetImageElement.alt = newContent.images.alt;
 }
 
 // Event listeners
@@ -72,7 +72,7 @@ export default tabsContainer.addEventListener('click', (event) => {
     let eventTarget = event.target;
     let tabTarget = eventTarget.dataset.destinationTab;
     let tabElements = [...tabsContainer.children];
-    
+
     if (eventTarget.classList.contains(tabActiveClass) || isChangingContent) return;
 
     tabElements.forEach(tab => tab.classList.remove(tabActiveClass));
