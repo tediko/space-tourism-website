@@ -1,7 +1,7 @@
 import { technology } from './data.json';
 
 // Selectors
-const tabsContainer = document.querySelectorAll('[data-technology-tab]');
+const tabsContainer = document.querySelector('[data-technology-tabs]');
 const contentContainer = document.querySelector('[data-technology-content]');
 const imageElement = document.querySelector('[data-technology-image-mobile]');
 const imageSrcsetElement = document.querySelector('[data-technology-image-desktop]');
@@ -19,10 +19,10 @@ let onMouseDownY;
 let currentTab = 0;
 
 // Handles tab change
-const handleTabChange = (target) => {
-    let targetContent = technology.find((element) => element.id == target);
+const handleTabChange = (targetContent) => {
     if (isChangingContent) return;
     isChangingContent = true;
+
     manageAnimationClasses('out');
 
     elementWithLongestAnimation.addEventListener('animationend', function contentOut(event) {
@@ -77,47 +77,67 @@ const handleMouseDown = (event) => {
 // If user moved mouse more than trigger move to the next/prev content.
 const handleMouseUp = (event) => {
     if (isChangingContent) return;
+    let tabElements = [...tabsContainer.children];
     let onMouseUpY = event.clientY || event.changedTouches[0].pageY;
     let offset = onMouseDownY - onMouseUpY;
     let trigger = 150;
+    let isTriggered = false;
     technologyContainer.style.cursor = "grab";
     
+    // Checks if user offset is higher than trigger.
     if (offset > trigger || offset < -trigger) {
-        tabsContainer.forEach(tab => tab.classList.remove(isActiveClass));
+        tabElements.forEach(tab => tab.classList.remove(isActiveClass));
+        isTriggered = true;
     }
 
+    // Checks which direction was triggered and which tab element is active.
+    // Based on that it increment or decremenet currentTab value
     if (offset > trigger && currentTab < technology.length - 1) {
         currentTab++;
-        handleTabChange(currentTab);
-        tabsContainer[currentTab].classList.add(isActiveClass);
     } else if (offset < -trigger && currentTab > 0) {
         currentTab--;
-        handleTabChange(currentTab);
-        tabsContainer[currentTab].classList.add(isActiveClass);
     } else if (offset > trigger && currentTab == technology.length - 1) {
         currentTab = 0;
-        handleTabChange(currentTab);
-        tabsContainer[currentTab].classList.add(isActiveClass);
     } else if (offset < -trigger && currentTab == 0) {
         currentTab = technology.length - 1;
-        handleTabChange(currentTab);
-        tabsContainer[currentTab].classList.add(isActiveClass);
+    }
+
+    if (isTriggered) {
+        let targetContent = technology.find((element) => element.id == currentTab);
+    
+        // Handles edge cases or errors that may occur, such as when the target content is not found 
+        if (!targetContent) {
+            console.error(`Content for tab "${currentTab}" not found.`);
+            return;
+        }
+
+        handleTabChange(targetContent);
+        tabElements[currentTab].classList.add(isActiveClass);
+        isTriggered = false;
     }
 
 }
 
 // Event listeners
-export default tabsContainer.forEach(tab => {
-    tab.addEventListener('click', (event) => {
-        let eventTarget = event.target;
-        let tabTarget = eventTarget.dataset.technologyTab;
-        currentTab = tabTarget;
-        if (eventTarget.classList.contains(isActiveClass) || isChangingContent) return;
+export default tabsContainer.addEventListener('click', (event) => {
+    let eventTarget = event.target;
+    let tabTarget = eventTarget.dataset.technologyTab;
+    let tabElements = [...tabsContainer.children];
+    let targetContent = technology.find((element) => element.id == tabTarget);
+    
+    // Handles edge cases or errors that may occur, such as when the target content is not found 
+    if (!targetContent) {
+        console.error(`Content for control "${tabTarget}" not found.`);
+        return;
+    }
 
-        tabsContainer.forEach(tab => tab.classList.remove(isActiveClass));
-        eventTarget.classList.add(isActiveClass);
-        handleTabChange(tabTarget);
-    })
+    currentTab = tabTarget;
+
+    if (eventTarget.classList.contains(isActiveClass) || isChangingContent) return;
+
+    tabElements.forEach(tab => tab.classList.remove(isActiveClass));
+    eventTarget.classList.add(isActiveClass);
+    handleTabChange(targetContent);
 })
 
 technologyContainer.addEventListener('mousedown', handleMouseDown);
