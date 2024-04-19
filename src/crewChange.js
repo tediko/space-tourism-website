@@ -15,7 +15,7 @@ let animOutClass = 'anim-out';
 let isChangingContent = false;
 let elementWithLongestAnimation = nameElement;
 let onMouseDownX;
-let currentTab = 0;
+let currentControl = 0;
 
 // Handles tab change
 const handleTabChange = (targetContent) => {
@@ -93,27 +93,27 @@ const handleMouseUp = (event) => {
         isTriggered = true;
     }
 
-    if (offset > trigger && currentTab < crew.length - 1) {
-        currentTab++;
-    } else if (offset < -trigger && currentTab > 0) {
-        currentTab--;
-    } else if (offset > trigger && currentTab == crew.length - 1) {
-        currentTab = 0;
-    } else if (offset < -trigger && currentTab == 0) {
-        currentTab = crew.length - 1;
+    if (offset > trigger && currentControl < crew.length - 1) {
+        currentControl++;
+    } else if (offset < -trigger && currentControl > 0) {
+        currentControl--;
+    } else if (offset > trigger && currentControl == crew.length - 1) {
+        currentControl = 0;
+    } else if (offset < -trigger && currentControl == 0) {
+        currentControl = crew.length - 1;
     }
     
     if (isTriggered) {
-        let targetContent = crew.find((element) => element.id == currentTab);
+        let targetContent = crew.find((element) => element.id == currentControl);
     
         // Handles edge cases or errors that may occur, such as when the target content is not found 
         if (!targetContent) {
-            console.error(`Content for control "${currentTab}" not found.`);
+            console.error(`Content for control "${currentControl}" not found.`);
             return;
         }
 
         handleTabChange(targetContent);
-        controlElements[currentTab].classList.add(isActiveClass);
+        controlElements[currentControl].classList.add(isActiveClass);
         isTriggered = false;
     }
 }
@@ -131,15 +131,14 @@ export default controlsContainer.addEventListener('click', (event) => {
             return;
         }
 
-        currentTab = controlTarget;
+        currentControl = controlTarget;
 
         if (eventTarget.classList.contains(isActiveClass) || isChangingContent) return;
 
         controlElements.forEach(tab => tab.classList.remove(isActiveClass));
         eventTarget.classList.add(isActiveClass);
         handleTabChange(targetContent);
-        console.log(targetContent);
-    })
+})
 
 contentContainer.addEventListener('mousedown', handleMouseDown);
 contentContainer.addEventListener('trouchstart', handleMouseDown);
