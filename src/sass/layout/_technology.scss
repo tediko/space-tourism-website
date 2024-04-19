@@ -79,6 +79,22 @@
             top: 0;
             left: 0;
         }
+
+        &.anim-out {
+            animation: technology-image-out 700ms ease-in-out forwards;
+
+            @include breakpoint('lg') {
+                animation: technology-image-out-desktop 700ms ease-in-out forwards;
+            }
+        }
+
+        &.anim-in {
+            animation: technology-image-in 700ms ease-in-out forwards;
+
+            @include breakpoint('lg') {
+                animation: technology-image-out-desktop 700ms ease-in-out forwards;
+            }
+        }
     }
 
     &__tabs {
@@ -120,6 +136,22 @@
         @include breakpoint('lg') {
             grid-row: 2;
             text-align: left;
+        }
+
+        &.anim-out {
+            animation: technology-content-out 700ms ease-in-out forwards;
+
+            @include breakpoint('lg') {
+                animation: technology-content-out-desktop 700ms ease-in-out forwards;
+            }
+        }
+
+        &.anim-in {
+            animation: technology-content-in 700ms ease-in-out forwards;
+
+            @include breakpoint('lg') {
+                animation: technology-content-in-desktop 700ms ease-in-out forwards;
+            }
         }
     }
 
