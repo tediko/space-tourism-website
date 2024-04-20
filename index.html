@@ -39,98 +39,100 @@
         </nav>
       </div>
     </header>
-    <main class="hero">
-      <div class="hero__container">
-        <div class="hero__intro">
-          <p class="hero__subheading heading--sm heading--purple">So, you want to travel to</p>
-          <h2 class="hero__heading heading--xlg">Space</h2>
-          <p class="hero__text text text--purple">Let’s face it; if you want to go to space, you might as well genuinely go to 
-            outer space and not hover kind of on the edge of it. Well sit back, and relax 
-            because we’ll give you a truly out of this world experience!</p>
+    <div class="gsap-container">
+      <main class="hero panel">
+        <div class="hero__container">
+          <div class="hero__intro">
+            <p class="hero__subheading heading--sm heading--purple">So, you want to travel to</p>
+            <h2 class="hero__heading heading--xlg">Space</h2>
+            <p class="hero__text text text--purple">Let’s face it; if you want to go to space, you might as well genuinely go to 
+              outer space and not hover kind of on the edge of it. Well sit back, and relax 
+              because we’ll give you a truly out of this world experience!</p>
+          </div>
+          <div class="hero__cta">
+            <a href="#" class="hero__link">Explore</a>
+          </div>
         </div>
-        <div class="hero__cta">
-          <a href="#" class="hero__link">Explore</a>
-        </div>
-      </div>
-    </main>
-    <section class="destination">
-      <div class="destination__container">
-        <h2 class="destination__title heading--sm">Pick your destination</h2>
-        <div class="destination__content" aria-live="polite" data-destination-content>
-          <img class="destination__planet-img" src="/destination/image-moon.webp" alt="Close-up image of the moon with visible craters and details on its surface" data-destination-planet="Moon">
-          <div class="destination__info">
-            <div class="destination__tabs" data-destination-tabs>
-              <button class="destination__tab tab-active text--link text--purple" type="button" data-destination-tab="Moon">Moon</button>
-              <button class="destination__tab text--link text--purple" type="button" data-destination-tab="Mars">Mars</button>
-              <button class="destination__tab text--link text--purple" type="button" data-destination-tab="Europa">Europa</button>
-              <button class="destination__tab text--link text--purple" type="button" data-destination-tab="Titan">Titan</button>
-            </div>
-            <h3 class="destination__subtitle heading--lg" data-destination-title>Moon</h3>
-            <p class="destination__desc text text--purple" data-destination-desc>See our planet as you’ve never seen it before. A perfect relaxing trip away to help 
-              regain perspective and come back refreshed. While you’re there, take in some history 
-              by visiting the Luna 2 and Apollo 11 landing sites.</p>
-            <div class="destination__separator"></div>
-            <div class="destination__details">
-              <div class="destination__details-distance">
-                <h4 class="destination__details-subheading text--sub-sm text--purple text--uppercase">Avg. distance</h4>
-                <p class="destination__details-desc text text--sub-big text--uppercase" data-destination-distance>384,400 km</p>
+      </main>
+      <section class="destination panel">
+        <div class="destination__container">
+          <h2 class="destination__title heading--sm">Pick your destination</h2>
+          <div class="destination__content" aria-live="polite" data-destination-content>
+            <img class="destination__planet-img" src="/destination/image-moon.webp" alt="Close-up image of the moon with visible craters and details on its surface" data-destination-planet="Moon">
+            <div class="destination__info">
+              <div class="destination__tabs" data-destination-tabs>
+                <button class="destination__tab tab-active text--link text--purple" type="button" data-destination-tab="Moon">Moon</button>
+                <button class="destination__tab text--link text--purple" type="button" data-destination-tab="Mars">Mars</button>
+                <button class="destination__tab text--link text--purple" type="button" data-destination-tab="Europa">Europa</button>
+                <button class="destination__tab text--link text--purple" type="button" data-destination-tab="Titan">Titan</button>
               </div>
-              <div class="destination__details-time">
-                <h4 class="destination__details-subheading text--sub-sm text--purple text--uppercase">Est. travel time</h4>
-                <p class="destination__details-desc text text--sub-big text--uppercase" data-destination-time>3 days</p>
+              <h3 class="destination__subtitle heading--lg" data-destination-title>Moon</h3>
+              <p class="destination__desc text text--purple" data-destination-desc>See our planet as you’ve never seen it before. A perfect relaxing trip away to help 
+                regain perspective and come back refreshed. While you’re there, take in some history 
+                by visiting the Luna 2 and Apollo 11 landing sites.</p>
+              <div class="destination__separator"></div>
+              <div class="destination__details">
+                <div class="destination__details-distance">
+                  <h4 class="destination__details-subheading text--sub-sm text--purple text--uppercase">Avg. distance</h4>
+                  <p class="destination__details-desc text text--sub-big text--uppercase" data-destination-distance>384,400 km</p>
+                </div>
+                <div class="destination__details-time">
+                  <h4 class="destination__details-subheading text--sub-sm text--purple text--uppercase">Est. travel time</h4>
+                  <p class="destination__details-desc text text--sub-big text--uppercase" data-destination-time>3 days</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="crew">
-      <div class="crew__container">
-        <h2 class="crew__title heading--sm">Meet your crew</h2>
-        <div class="crew__content-wrapper">
-          <div class="crew__content" aria-live="polite" data-crew-container>
-            <div class="crew__image-wrapper">
-              <img class="crew__image" src="/crew/image-douglas-hurley.webp" alt="" data-crew-image>
-            </div>
-            <div class="crew__info">
-              <p class="crew__subheading heading--md" data-crew-subheading>Commander</p>
-              <h3 class="crew__name heading--big" data-crew-name>Douglas Hurley</h3>
-              <p class="crew__desc text text--purple" data-crew-desc>Douglas Gerald Hurley is an American engineer, former Marine Corps pilot 
-                and former NASA astronaut. He launched into space for the third time as 
-                commander of Crew Dragon Demo-2.</p>
-              <div class="crew__controls" data-crew-controls>
-                <button class="crew__control is-active" type="button" data-crew-control="0" aria-label="show first crew member"></button>
-                <button class="crew__control" type="button" data-crew-control="1" aria-label="show second crew member"></button>
-                <button class="crew__control" type="button" data-crew-control="2" aria-label="show third crew member"></button>
-                <button class="crew__control" type="button" data-crew-control="3" aria-label="show fourth crew member"></button>
+      </section>
+      <section class="crew panel">
+        <div class="crew__container">
+          <h2 class="crew__title heading--sm">Meet your crew</h2>
+          <div class="crew__content-wrapper">
+            <div class="crew__content" aria-live="polite" data-crew-container>
+              <div class="crew__image-wrapper">
+                <img class="crew__image" src="/crew/image-douglas-hurley.webp" alt="" data-crew-image>
+              </div>
+              <div class="crew__info">
+                <p class="crew__subheading heading--md" data-crew-subheading>Commander</p>
+                <h3 class="crew__name heading--big" data-crew-name>Douglas Hurley</h3>
+                <p class="crew__desc text text--purple" data-crew-desc>Douglas Gerald Hurley is an American engineer, former Marine Corps pilot 
+                  and former NASA astronaut. He launched into space for the third time as 
+                  commander of Crew Dragon Demo-2.</p>
+                <div class="crew__controls" data-crew-controls>
+                  <button class="crew__control is-active" type="button" data-crew-control="0" aria-label="show first crew member"></button>
+                  <button class="crew__control" type="button" data-crew-control="1" aria-label="show second crew member"></button>
+                  <button class="crew__control" type="button" data-crew-control="2" aria-label="show third crew member"></button>
+                  <button class="crew__control" type="button" data-crew-control="3" aria-label="show fourth crew member"></button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="technology">
-      <div class="technology__container" data-technology-container>
-        <h2 class="technology__title heading--sm">Space launch 101</h2>
-        <picture class="technology__image-wrapper">
-          <source media="(min-width: 64rem)" srcset="/technology/image-launch-vehicle-portrait.jpg" data-technology-image-desktop/>
-          <img class="technology__image" src="/technology/image-launch-vehicle-landscape.jpg" alt="" data-technology-image-mobile>
-        </picture>
-        <div class="technology__tabs" data-technology-tabs>
-          <button class="technology__tab is-active" type="button" data-technology-tab="0">1</button>
-          <button class="technology__tab" type="button" data-technology-tab="1">2</button>
-          <button class="technology__tab" type="button" data-technology-tab="2">3</button>
+      </section>
+      <section class="technology panel">
+        <div class="technology__container" data-technology-container>
+          <h2 class="technology__title heading--sm">Space launch 101</h2>
+          <picture class="technology__image-wrapper">
+            <source media="(min-width: 64rem)" srcset="/technology/image-launch-vehicle-portrait.jpg" data-technology-image-desktop/>
+            <img class="technology__image" src="/technology/image-launch-vehicle-landscape.jpg" alt="" data-technology-image-mobile>
+          </picture>
+          <div class="technology__tabs" data-technology-tabs>
+            <button class="technology__tab is-active" type="button" data-technology-tab="0">1</button>
+            <button class="technology__tab" type="button" data-technology-tab="1">2</button>
+            <button class="technology__tab" type="button" data-technology-tab="2">3</button>
+          </div>
+          <div class="technology__content" aria-live="polite" data-technology-content>
+            <p class="technology__subheading text--nav text--purple text--uppercase">The terminology...</p>
+            <h2 class="technology__name heading--big" data-technology-name>Launch vehicle</h2>
+            <p class="technology__desc text text--purple" data-technology-desc>  A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a 
+              payload from Earth's surface to space, usually to Earth orbit or beyond. Our 
+              WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, 
+              it's quite an awe-inspiring sight on the launch pad!</p>
+          </div>
         </div>
-        <div class="technology__content" aria-live="polite" data-technology-content>
-          <p class="technology__subheading text--nav text--purple text--uppercase">The terminology...</p>
-          <h2 class="technology__name heading--big" data-technology-name>Launch vehicle</h2>
-          <p class="technology__desc text text--purple" data-technology-desc>  A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a 
-            payload from Earth's surface to space, usually to Earth orbit or beyond. Our 
-            WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, 
-            it's quite an awe-inspiring sight on the launch pad!</p>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
