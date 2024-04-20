@@ -90,6 +90,18 @@
     }
 }
 
+/* GSAP container for animations */
+.gsap-container{
+    position: relative;
+}
+
+/* GSAP helper for sections to animate */
+.panel {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+}
+
 /* Screen readers only! */
 .sr-only {
 	border: 0 !important;
