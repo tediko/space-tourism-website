@@ -39,7 +39,7 @@ export default gsap.utils.toArray("[data-link]").forEach(link => {
     event.preventDefault();
     const targetId = link.getAttribute('href').slice(1);
     const targetSection = sectionTops.find(section => section.id === targetId);
-    gsap.to(window, { duration: 1, scrollTo: targetSection.top });
+    gsap.to(window, { duration: 2, scrollTo: targetSection.top });
   });
 });
 
