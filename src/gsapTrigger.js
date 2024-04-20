@@ -31,7 +31,7 @@ const createScroll = (topTrigger) => {
                 trigger: panel,
                 start: `${topTrigger} top`,
                 scrub: 1,
-                markers: true
+                markers: false
             }
         })
         .to(panel, {
