@@ -13,6 +13,7 @@ let sectionTops = sections.map(section => ({
 
 // Function to update the sectionTops array on window resize (debounced)
 const updateSectionTops = () => {
+  window.scrollTo(0, 0);
   sectionTops = sections.map(section => ({
     id: section.id,
     top: section.getBoundingClientRect().top
