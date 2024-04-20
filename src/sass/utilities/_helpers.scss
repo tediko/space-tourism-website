@@ -97,9 +97,11 @@
 
 /* GSAP helper for sections to animate */
 .panel {
-    position: sticky;
-    top: 0;
-    min-height: 100vh;
+    &.is-active {
+        position: sticky;
+        top: 0;
+        min-height: 100vh;
+    }
 }
 
 /* Screen readers only! */
