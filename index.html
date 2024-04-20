@@ -56,8 +56,8 @@
       </main>
       <section class="destination panel">
         <div class="destination__container">
-          <h2 class="destination__title heading--sm">Pick your destination</h2>
-          <div class="destination__content" aria-live="polite" data-destination-content>
+          <h2 class="destination__title heading--sm" data-state="no-js">Pick your destination</h2>
+          <div class="destination__content" aria-live="polite" data-state="no-js" data-destination-content>
             <img class="destination__planet-img" src="/destination/image-moon.webp" alt="Close-up image of the moon with visible craters and details on its surface" data-destination-planet="Moon">
             <div class="destination__info">
               <div class="destination__tabs" data-destination-tabs>
@@ -87,9 +87,9 @@
       </section>
       <section class="crew panel">
         <div class="crew__container">
-          <h2 class="crew__title heading--sm">Meet your crew</h2>
+          <h2 class="crew__title heading--sm" data-state="no-js">Meet your crew</h2>
           <div class="crew__content-wrapper">
-            <div class="crew__content" aria-live="polite" data-crew-container>
+            <div class="crew__content" aria-live="polite" data-state="no-js" data-crew-container>
               <div class="crew__image-wrapper">
                 <img class="crew__image" src="/crew/image-douglas-hurley.webp" alt="" data-crew-image>
               </div>
@@ -112,8 +112,8 @@
       </section>
       <section class="technology panel">
         <div class="technology__container" data-technology-container>
-          <h2 class="technology__title heading--sm">Space launch 101</h2>
-          <picture class="technology__image-wrapper">
+          <h2 class="technology__title heading--sm" data-state="no-js">Space launch 101</h2>
+          <picture class="technology__image-wrapper" data-state="no-js">
             <source media="(min-width: 64rem)" srcset="/technology/image-launch-vehicle-portrait.jpg" data-technology-image-desktop/>
             <img class="technology__image" src="/technology/image-launch-vehicle-landscape.jpg" alt="" data-technology-image-mobile>
           </picture>
@@ -122,7 +122,7 @@
             <button class="technology__tab" type="button" data-technology-tab="1">2</button>
             <button class="technology__tab" type="button" data-technology-tab="2">3</button>
           </div>
-          <div class="technology__content" aria-live="polite" data-technology-content>
+          <div class="technology__content" aria-live="polite" data-state="no-js" data-technology-content>
             <p class="technology__subheading text--nav text--purple text--uppercase">The terminology...</p>
             <h2 class="technology__name heading--big" data-technology-name>Launch vehicle</h2>
             <p class="technology__desc text text--purple" data-technology-desc>  A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a 
