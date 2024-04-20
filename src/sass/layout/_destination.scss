@@ -45,6 +45,11 @@
             padding-left: 3.375rem;
         }
 
+        &[data-state="ready"] {
+            transform:translateY(-100px);
+            opacity: 0;
+        }
+
         &::before {
             position: absolute;
             counter-increment: section;
@@ -61,6 +66,11 @@
             display: flex;
             justify-content: space-between;
             align-items: end;
+        }
+
+        &[data-state="ready"] {
+            transform: translateY(100px);
+            opacity: 0;
         }
     }
 

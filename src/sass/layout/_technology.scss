@@ -45,11 +45,20 @@
         position: relative;
         padding-left: 2.3rem;
 
+        @include breakpoint('md') {
+            justify-self: start;
+        }
+
         @include breakpoint('lg') {
             padding-left: 3.375rem;
             margin-bottom: 0;
             grid-row: 1;
             grid-column: span 2;
+        }
+
+        &[data-state="ready"] {
+            transform:translateY(-100px);
+            opacity: 0;
         }
 
         &::before {
@@ -69,6 +78,11 @@
             grid-row: 2;
             grid-column: 3;
             height: 100%;
+        }
+
+        &[data-state="ready"] {
+            transform:translateY(100px);
+            opacity: 0;
         }
     }
 
@@ -136,6 +150,11 @@
         @include breakpoint('lg') {
             grid-row: 2;
             text-align: left;
+        }
+
+        &[data-state="ready"] {
+            transform:translateY(100px);
+            opacity: 0;
         }
 
         &.anim-out {

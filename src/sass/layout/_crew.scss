@@ -40,6 +40,11 @@
             margin-bottom: 0;
         }
 
+        &[data-state="ready"] {
+            transform:translateY(-100px);
+            opacity: 0;
+        }
+
         &::before {
             position: absolute;
             counter-increment: section;
@@ -72,6 +77,11 @@
             flex-direction: row;
             align-items: end;
             text-align: left;
+        }
+
+        &[data-state="ready"] {
+            transform:translateY(100px);
+            opacity: 0;
         }
     }
 
