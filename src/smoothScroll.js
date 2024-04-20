@@ -6,22 +6,21 @@ gsap.registerPlugin(ScrollToPlugin);
 let sections = gsap.utils.toArray(".panel");
 
 // Calculate the top position of each section relative to the viewport
-let sectionTops = [];
+let sectionTops = sections.map(section => ({
+  id: section.id,
+  top: section.getBoundingClientRect().top
+}));
 
 // Function to update the sectionTops array on window resize (debounced)
-function updateSectionTops() {
-  // Scroll to the top of the page before calculating sectionTops
-  window.scrollTo(0, 0);
-
-  if (window.innerWidth >= 1024) {
-    sectionTops = sections.map(section => section.getBoundingClientRect().top);
-  } else {
-    sectionTops = sections.map(section => section.id);
-  }
+const updateSectionTops = () => {
+  sectionTops = sections.map(section => ({
+    id: section.id,
+    top: section.getBoundingClientRect().top
+  }));
 }
 
 // Debounce the updateSectionTops function
-function debounce(func, wait) {
+const debounce = (func, wait) => {
   let timeout;
   return function(...args) {
     const context = this;
@@ -30,20 +29,18 @@ function debounce(func, wait) {
   };
 }
 
-// Add debounced event listener for window resize
-window.addEventListener('resize', debounce(updateSectionTops, 250));
-
 // Call updateSectionTops() immediately to initialize sectionTops
 updateSectionTops();
 
 // Add a click event listener to each navigation link
-export default gsap.utils.toArray(".header__link").forEach(function(a, i) {
-  a.addEventListener("click", function(e) {
-    e.preventDefault();
-    if (window.innerWidth >= 1024) {
-      gsap.to(window, { duration: 1, scrollTo: sectionTops[i] });
-    } else {
-      gsap.to(window, { duration: 1, scrollTo: { y: `#${sections[i].id}`, offsetY: 0 } });
-    }
+export default gsap.utils.toArray("[data-link]").forEach(link => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    const targetId = link.getAttribute('href').slice(1);
+    const targetSection = sectionTops.find(section => section.id === targetId);
+    gsap.to(window, { duration: 1, scrollTo: targetSection.top });
   });
 });
+
+// Add debounced event listener for window resize
+window.addEventListener('resize', debounce(updateSectionTops, 250));
