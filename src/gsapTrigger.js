@@ -22,15 +22,16 @@ const initialLoad = () => {
 let panels = gsap.utils.toArray(".panel");
 
 // Creates paralax effect animations
-const createScroll = () => {
+const createScroll = (topTrigger) => {
     panels.forEach((panel, index) => {
         const isLast = index === panels.length - 1;
         
         gsap.timeline({
             scrollTrigger: {
                 trigger: panel,
-                start: 'top top',
+                start: `${topTrigger} top`,
                 scrub: 1,
+                markers: true
             }
         })
         .to(panel, {
@@ -54,11 +55,12 @@ const animate = () => {
 
     matchMedia.add(smBreakpoint, () => {
         document.querySelectorAll('.panel').forEach(panel => panel.classList.remove('is-active'));
+        createScroll('35%');
     });
 
     matchMedia.add(lgBreakpoint, () => {
         document.querySelectorAll('.panel').forEach(panel => panel.classList.add('is-active'));
-        createScroll();
+        createScroll('top');
     });
     
     gsap.to(".hero__intro", {
