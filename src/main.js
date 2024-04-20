@@ -4,3 +4,4 @@ import destinationTabs from './destinationTabs';
 import crewChange from './crewChange';
 import technologyTabs from './technologyTabs';
 import gsapTrigger from './gsapTrigger';
+import smoothScroll from './smoothScroll';
