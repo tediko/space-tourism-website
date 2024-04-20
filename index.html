@@ -22,16 +22,16 @@
         <nav class="header__nav">
           <ul class="header__list" data-nav-list>
             <li class="header__item">
-              <a href="#" class="header__link text--link">Home</a>
+              <a href="#home" class="header__link text--link" data-link>Home</a>
             </li>
             <li class="header__item">
-              <a href="#" class="header__link text--link">Destination</a>
+              <a href="#destination" class="header__link text--link" data-link>Destination</a>
             </li>
             <li class="header__item">
-              <a href="#" class="header__link text--link">Crew</a>
+              <a href="#crew" class="header__link text--link" data-link>Crew</a>
             </li>
             <li class="header__item">
-              <a href="#" class="header__link text--link">Technology</a>
+              <a href="#technology" class="header__link text--link" data-link>Technology</a>
             </li>
           </ul>
           <button class="header__menu" aria-label="toggle menu" aria-expanded="false" data-hamburger>
@@ -43,7 +43,7 @@
 
     <div class="gsap-container">
       <!-- Hero -->
-      <main class="hero panel">
+      <main id="home" class="hero panel">
         <div class="hero__container">
           <div class="hero__intro">
             <p class="hero__subheading heading--sm heading--purple">So, you want to travel to</p>
@@ -53,13 +53,13 @@
               because we’ll give you a truly out of this world experience!</p>
           </div>
           <div class="hero__cta">
-            <a href="#" class="hero__link">Explore</a>
+            <a href="#destination" class="hero__link" data-link>Explore</a>
           </div>
         </div>
       </main>
 
       <!-- Destination -->
-      <section class="destination panel">
+      <section id="destination" class="destination panel">
         <div class="destination__container">
           <h2 class="destination__title heading--sm" data-state="no-js">Pick your destination</h2>
           <div class="destination__content" aria-live="polite" data-state="no-js" data-destination-content>
@@ -92,7 +92,7 @@
       </section>
 
       <!-- Crew -->
-      <section class="crew panel">
+      <section id="crew" class="crew panel">
         <div class="crew__container">
           <h2 class="crew__title heading--sm" data-state="no-js">Meet your crew</h2>
           <div class="crew__content-wrapper">
@@ -117,9 +117,9 @@
           </div>
         </div>
       </section>
-      
+
       <!-- Technology -->
-      <section class="technology panel">
+      <section id="technology" class="technology panel">
         <div class="technology__container" data-technology-container>
           <h2 class="technology__title heading--sm" data-state="no-js">Space launch 101</h2>
           <picture class="technology__image-wrapper" data-state="no-js">
