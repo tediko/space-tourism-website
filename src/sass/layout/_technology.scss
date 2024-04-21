@@ -147,9 +147,14 @@
     &__content {
         text-align: center;
 
+        @include breakpoint('sm') {
+            padding-bottom: 2.5rem;
+        }
+
         @include breakpoint('lg') {
             grid-row: 2;
             text-align: left;
+            padding-bottom: 0;
         }
 
         &[data-state="ready"] {
@@ -184,6 +189,11 @@
 
     &__desc {
         max-width: 48.5ch;
+        padding-inline: 1.5rem;
+
+        @include breakpoint('sm') {
+            padding: 0;
+        }
 
         @include breakpoint('lg') {
             max-width: 43.6ch;
