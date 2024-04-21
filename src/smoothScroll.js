@@ -20,7 +20,7 @@ const updateSectionTops = () => {
   }));
 }
 
-// Debounce the updateSectionTops function
+// Function to debounce resize event
 const debounce = (mainFunction, delay) => {
   let timer;
   
