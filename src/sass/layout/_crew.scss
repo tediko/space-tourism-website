@@ -203,6 +203,8 @@
         cursor: pointer;
 
         @include breakpoint('md') {
+            width: 15px;
+            height: 15px;
             transition: background-color 350ms ease-in-out;
 
             &:hover {
