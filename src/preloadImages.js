@@ -1,11 +1,12 @@
 import data from './data.json';
 
 // Preload images using Image() constructor
-const preloadImages = (images) => {
-    let preloadedImage = new Image();
+const preloadImages = (imagesSrc) => {
+    let preloadedImages = [];
     
-    images.forEach((image) => {
-        preloadedImage.src = image;
+    imagesSrc.forEach((src, index) => {
+        preloadedImages[index] = new Image();
+        preloadedImages[index].src = src;
     })
 }
 
