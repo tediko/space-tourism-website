@@ -107,7 +107,7 @@
             animation: technology-image-in 700ms ease-in-out forwards;
 
             @include breakpoint('lg') {
-                animation: technology-image-out-desktop 700ms ease-in-out forwards;
+                animation: technology-image-in-desktop 700ms ease-in-out forwards;
             }
         }
     }
