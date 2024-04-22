@@ -71,7 +71,7 @@ let  callback  = (entries, observer) => {
 observer  =  new  IntersectionObserver(callback, options);
 targets.forEach(target  =>  observer.observe(target));
 }
-
+```
 
 ### What I learned
 
