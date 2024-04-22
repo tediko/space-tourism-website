@@ -17,7 +17,7 @@ const showActiveNavItemOnScroll = () => {
             trigger: panel,
             start: "top 50%",
             end: "110% bottom",
-            markers: true,
+            markers: false,
     
             onEnter: () => {
             navItems.forEach((item) => {
