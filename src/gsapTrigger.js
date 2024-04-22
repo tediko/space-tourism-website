@@ -3,6 +3,39 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
+// Selectors
+let panels = [...document.querySelectorAll('.panel')];
+let navItems = [...document.querySelectorAll('.header__item')];
+
+// Flags
+let isActiveClass = 'active';
+
+// Add navItem active class when section is in viewport
+const showActiveNavItemOnScroll = () => {
+    panels.forEach((panel, index) => {
+        ScrollTrigger.create({
+            trigger: panel,
+            start: "top 50%",
+            end: "110% bottom",
+            markers: true,
+    
+            onEnter: () => {
+            navItems.forEach((item) => {
+                item.classList.remove(isActiveClass);
+            });
+            navItems[index].classList.add(isActiveClass);
+            },
+            onEnterBack: () => {
+            navItems.forEach((item) => {
+                item.classList.remove(isActiveClass);
+            });
+            navItems[index].classList.add(isActiveClass);
+            }
+        });
+    });
+}
+
+
 // Handles initial load and checks if user has prefers-reduced-motion media feature
 const initialLoad = () => {
     let isReduced = window.matchMedia(`(prefers-reduced-motion: reduce)`).matches; 
@@ -16,10 +49,6 @@ const initialLoad = () => {
     })
     animate();
 }
-
-
-// Selects .panel elements from DOM
-let panels = gsap.utils.toArray(".panel");
 
 // Creates paralax effect animations
 const createScroll = (topTrigger) => {
@@ -170,4 +199,5 @@ const animate = () => {
     });
 }
 
+showActiveNavItemOnScroll();
 export default initialLoad();
