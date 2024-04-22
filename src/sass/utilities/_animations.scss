@@ -185,13 +185,13 @@
 @keyframes technology-image-out-desktop {
     to {
         opacity: 0;
-        transform: translateY(-100px);
+        transform: translateY(-50px);
     }
 }
 
 @keyframes technology-image-in-desktop {
     0% {
-        transform: translateY(100px);
+        transform: translateY(50px);
         opacity: 0;
     }
     100% {
