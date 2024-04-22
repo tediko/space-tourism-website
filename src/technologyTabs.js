@@ -15,7 +15,7 @@ let animInClass = 'anim-in';
 let animOutClass = 'anim-out';
 let isChangingContent = false;
 let elementWithLongestAnimation = contentContainer;
-let onMouseDownY;
+let onMouseDownX;
 let currentTab = 0;
 
 // Handles tab change
@@ -65,10 +65,10 @@ const updateContent = (newContent) => {
 
 
 // Checks where user clicked/touched on screen
-// and assigns that value to onMouseDownY variable
+// and assigns that value to onMouseDownX variable
 const handleMouseDown = (event) => {
     if (isChangingContent) return;
-    onMouseDownY = event.clientY || event.changedTouches[0].pageY;
+    onMouseDownX = event.clientX || event.changedTouches[0].pageX;
     technologyContainer.style.cursor = "grabbing";
     event.preventDefault();
 }
@@ -78,8 +78,8 @@ const handleMouseDown = (event) => {
 const handleMouseUp = (event) => {
     if (isChangingContent) return;
     let tabElements = [...tabsContainer.children];
-    let onMouseUpY = event.clientY || event.changedTouches[0].pageY;
-    let offset = onMouseDownY - onMouseUpY;
+    let onMouseUpX = event.clientX || event.changedTouches[0].pageX;
+    let offset = onMouseDownX - onMouseUpX;
     let trigger = 150;
     let isTriggered = false;
     technologyContainer.style.cursor = "grab";
