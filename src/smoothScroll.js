@@ -8,8 +8,8 @@ const linkElements = [...document.querySelectorAll('[data-link]')];
 
 // Flags
 let sectionTops;
-let previousViewportWidth = currentViewportWidth;
-let previousViewportHeight = currentViewportHeight;
+let previousViewportWidth = window.innerWidth;
+let previousViewportHeight = window.innerHeight;
 
 // Calculate the top position of each section relative to the viewport
 // and update the sectionTops array on window resize (debounced) or initial load
