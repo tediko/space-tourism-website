@@ -133,6 +133,13 @@
         transition: background-color 350ms ease-in-out,
                     color 350ms ease-in-out;
 
+        &:focus-visible {
+            outline: 2px dashed $c-white;
+            outline-offset: 3px;
+            background-color: $c-white;
+            color: $c-black; 
+        }
+
         @include breakpoint('md') {
             &:hover {
                 background-color: $c-white;
