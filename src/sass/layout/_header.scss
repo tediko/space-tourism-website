@@ -52,6 +52,12 @@
     }
 
     &__logo {
+
+        &:focus-visible {
+            outline: 2px dashed $c-white;
+            outline-offset: 3px;
+        }
+
         @include breakpoint('lg') {
             margin-right: 4rem;
         }
@@ -117,6 +123,15 @@
     &__item {
         position: relative;
 
+        &:has(:focus-visible)::after {
+            width: 3px;
+            
+            @include breakpoint('md') {
+                width: 100%;
+                transform: scaleX(100%);
+            }
+        }
+
         &::after {
             position: absolute;
             content: '';
@@ -155,6 +170,11 @@
     &__link {
         position: relative;
         padding-left: 1.8rem;
+
+        &:focus-visible {
+            outline: 2px dashed $c-white;
+            outline-offset: 3px;
+        }
 
         @include breakpoint('md') {
             padding-left: 0;
