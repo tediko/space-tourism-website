@@ -98,9 +98,11 @@
 /* GSAP helper for sections to animate */
 .panel {
     &.is-active {
-        position: sticky;
-        top: 0;
-        min-height: 100vh;
+        @media (min-height: 50rem) {
+            position: sticky;
+            top: 0;
+            min-height: 100vh;
+        }
     }
 }
 
