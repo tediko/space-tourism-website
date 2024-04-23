@@ -116,6 +116,16 @@
         background-color: transparent;
         border: none;
 
+        &:focus-visible {
+            outline: 2px dashed $c-white;
+            outline-offset: 3px;
+            color: $c-white;
+        }
+
+        &:focus-visible::before {
+            width: 100%;
+        }
+
         @include breakpoint('md') {
             cursor: pointer;
             transition: color 350ms ease-in-out;
