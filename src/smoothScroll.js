@@ -8,15 +8,26 @@ const linkElements = [...document.querySelectorAll('[data-link]')];
 
 // Flags
 let sectionTops;
-let previousViewportWidth = window.innerWidth;
-let previousViewportHeight = window.innerHeight;
+let previousViewportWidth = currentViewportWidth;
+let previousViewportHeight = currentViewportHeight;
 
 // Calculate the top position of each section relative to the viewport
 // and update the sectionTops array on window resize (debounced) or initial load
 const updateSectionTops = (event) => {
-  // Check if the viewport width or height has actually changed
-  // if it doesn't change and resize was caused by mobile browser don't do anything
-  if (window.innerWidth !== previousViewportWidth || window.innerHeight !== previousViewportHeight) {
+  // Get the current viewport width and height
+  const currentViewportWidth = window.innerWidth;
+  const currentViewportHeight = window.innerHeight;
+
+  // Calculate the change in viewport size
+  const widthChange = Math.abs(currentViewportWidth - previousViewportWidth);
+  const heightChange = Math.abs(currentViewportHeight - previousViewportHeight);
+
+  // Define a threshold for considering a resize as "significant"
+  const resizeThreshold = 50; // 50 pixels
+
+  // Check if the resize is significant (not caused by the bottom menu disappearing)
+  if (widthChange >= resizeThreshold || heightChange >= resizeThreshold) {
+    console.log(event);
     window.scrollTo(0, 0);
 
     sectionTops = sectionContainers.map(section => ({
@@ -24,8 +35,9 @@ const updateSectionTops = (event) => {
       top: section.getBoundingClientRect().top
     }));
 
-    previousViewportWidth = window.innerWidth;
-    previousViewportHeight = window.innerHeight;
+    // Update the previous viewport width and height
+    previousViewportWidth = currentViewportWidth;
+    previousViewportHeight = currentViewportHeight;
   }
 }
 
