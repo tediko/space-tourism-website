@@ -23,7 +23,7 @@ const updateSectionTops = (event) => {
   const heightChange = Math.abs(currentViewportHeight - previousViewportHeight);
 
   // Define a threshold for considering a resize as "significant"
-  const resizeThreshold = 50; // 50 pixels
+  const resizeThreshold = 150; // 50 pixels
 
   // Check if the resize is significant (not caused by the bottom menu disappearing)
   if (widthChange >= resizeThreshold || heightChange >= resizeThreshold) {
