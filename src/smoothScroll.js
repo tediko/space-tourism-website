@@ -8,16 +8,25 @@ const linkElements = [...document.querySelectorAll('[data-link]')];
 
 // Flags
 let sectionTops;
+let previousViewportWidth = window.innerWidth;
+let previousViewportHeight = window.innerHeight;
 
 // Calculate the top position of each section relative to the viewport
 // and update the sectionTops array on window resize (debounced) or initial load
-const updateSectionTops = () => {
-  window.scrollTo(0, 0);
+const updateSectionTops = (event) => {
+  // Check if the viewport width or height has actually changed
+  // if it doesn't change and resize was caused by mobile browser don't do anything
+  if (window.innerWidth !== previousViewportWidth || window.innerHeight !== previousViewportHeight) {
+    window.scrollTo(0, 0);
 
-  sectionTops = sectionContainers.map(section => ({
-    id: section.id,
-    top: section.getBoundingClientRect().top
-  }));
+    sectionTops = sectionContainers.map(section => ({
+      id: section.id,
+      top: section.getBoundingClientRect().top
+    }));
+
+    previousViewportWidth = window.innerWidth;
+    previousViewportHeight = window.innerHeight;
+  }
 }
 
 // Function to debounce resize event
