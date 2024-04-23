@@ -202,6 +202,12 @@
         border: none;
         cursor: pointer;
 
+        &:focus-visible {
+            outline: 2px dashed $c-white;
+            outline-offset: 3px;
+            background-color: $c-white;
+        }
+
         @include breakpoint('md') {
             width: 15px;
             height: 15px;
