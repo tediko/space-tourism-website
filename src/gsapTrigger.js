@@ -80,17 +80,23 @@ const animate = () => {
     let desktopMediaQuery = mediaBreakpoints.lg;
     let matchMedia = gsap.matchMedia();
     let smBreakpoint = `(max-width: ${desktopMediaQuery})`;
-    let lgBreakpoint = `(min-width: ${desktopMediaQuery})`;
+    let lgBreakpoint = `(min-width: ${desktopMediaQuery}) and (min-height: 50rem)`;
 
     matchMedia.add(smBreakpoint, () => {
         document.querySelectorAll('.panel').forEach(panel => panel.classList.remove('is-active'));
         createScroll('35%');
     });
 
+    matchMedia.add(`(max-height: 49.9rem)`, () => {
+        document.querySelectorAll('.panel').forEach(panel => panel.classList.add('is-active'));
+        createScroll('20%');
+    });
+
     matchMedia.add(lgBreakpoint, () => {
         document.querySelectorAll('.panel').forEach(panel => panel.classList.add('is-active'));
         createScroll('top');
     });
+
     
     gsap.to(".hero__intro", {
         scrollTrigger: {
