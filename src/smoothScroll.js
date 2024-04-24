@@ -23,7 +23,7 @@ const updateSectionTops = (event) => {
   const heightChange = Math.abs(currentViewportHeight - previousViewportHeight);
 
   // Define a threshold for considering a resize as "significant"
-  const resizeThreshold = 150; // 50 pixels
+  const resizeThreshold = 100; // 100 pixels
 
   sectionTops = sectionContainers.map(section => ({
     id: section.id,
