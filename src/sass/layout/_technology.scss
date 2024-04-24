@@ -146,7 +146,8 @@
                 color: $c-black; 
             }
         }
-        &.is-active {
+
+        &[aria-selected="true"] {
             background-color: $c-white;
             color: $c-black;
         }
