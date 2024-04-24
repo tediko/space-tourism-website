@@ -9,7 +9,6 @@ const descriptionElement = document.querySelector('[data-crew-desc]');
 const contentContainer = document.querySelector('[data-crew-container]');
 
 // Flags
-let isActiveClass = 'is-active';
 let animInClass = 'anim-in';
 let animOutClass = 'anim-out';
 let isChangingContent = false;
@@ -89,7 +88,7 @@ const handleMouseUp = (event) => {
 
     // Checks if user offset is higher than trigger.
     if (offset > trigger || offset < -trigger) {
-        controlElements.forEach(tab => tab.classList.remove(isActiveClass));
+        controlElements.forEach(controlEl => controlEl.ariaSelected = 'false');
         isTriggered = true;
     }
 
@@ -115,7 +114,8 @@ const handleMouseUp = (event) => {
         }
 
         handleTabChange(targetContent);
-        controlElements[currentControl].classList.add(isActiveClass);
+        controlElements[currentControl].ariaSelected = 'true';
+        
         isTriggered = false;
     }
 }
@@ -135,10 +135,10 @@ export default controlsContainer.addEventListener('click', (event) => {
 
         currentControl = controlTarget;
 
-        if (eventTarget.classList.contains(isActiveClass) || isChangingContent) return;
+        if (eventTarget.ariaSelected == 'true' || isChangingContent) return;
 
-        controlElements.forEach(tab => tab.classList.remove(isActiveClass));
-        eventTarget.classList.add(isActiveClass);
+        controlElements.forEach(controlEl => controlEl.ariaSelected = 'false');
+        eventTarget.ariaSelected = 'true';
         handleTabChange(targetContent);
 })
 
