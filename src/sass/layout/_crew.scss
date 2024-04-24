@@ -218,7 +218,7 @@
             }
         }
 
-        &.is-active {
+        &[aria-selected="true"] {
             background-color: $c-white;
         }
     }
