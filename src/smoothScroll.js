@@ -25,21 +25,19 @@ const updateSectionTops = (event) => {
   // Define a threshold for considering a resize as "significant"
   const resizeThreshold = 100; // 100 pixels
 
-  sectionTops = sectionContainers.map(section => ({
-    id: section.id,
-    top: section.getBoundingClientRect().top
-  }));
-  
   // Check if the resize is significant (not caused by the bottom menu disappearing)
   if (widthChange >= resizeThreshold || heightChange >= resizeThreshold) {
-    console.log(event);
     window.scrollTo(0, 0);
-
-
+    
     // Update the previous viewport width and height
     previousViewportWidth = currentViewportWidth;
     previousViewportHeight = currentViewportHeight;
   }
+
+  sectionTops = sectionContainers.map(section => ({
+    id: section.id,
+    top: section.getBoundingClientRect().top
+  }));
 }
 
 // Function to debounce resize event
