@@ -10,7 +10,6 @@ const descriptionElement = document.querySelector('[data-technology-desc]');
 const technologyContainer = document.querySelector('[data-technology-container]');
 
 // Flags
-let isActiveClass = 'is-active';
 let animInClass = 'anim-in';
 let animOutClass = 'anim-out';
 let isChangingContent = false;
@@ -86,7 +85,7 @@ const handleMouseUp = (event) => {
     
     // Checks if user offset is higher than trigger.
     if (offset > trigger || offset < -trigger) {
-        tabElements.forEach(tab => tab.classList.remove(isActiveClass));
+        tabElements.forEach(tab => tab.ariaSelected = 'false');
         isTriggered = true;
     }
 
@@ -112,7 +111,7 @@ const handleMouseUp = (event) => {
         }
 
         handleTabChange(targetContent);
-        tabElements[currentTab].classList.add(isActiveClass);
+        tabElements[currentTab].ariaSelected = 'true';
         isTriggered = false;
     }
 
@@ -133,10 +132,10 @@ export default tabsContainer.addEventListener('click', (event) => {
 
     currentTab = tabTarget;
 
-    if (eventTarget.classList.contains(isActiveClass) || isChangingContent) return;
+    if (eventTarget.ariaSelected == 'true' || isChangingContent) return;
 
-    tabElements.forEach(tab => tab.classList.remove(isActiveClass));
-    eventTarget.classList.add(isActiveClass);
+    tabElements.forEach(tab => tab.ariaSelected = 'false');
+    eventTarget.ariaSelected = 'true';
     handleTabChange(targetContent);
 })
 
