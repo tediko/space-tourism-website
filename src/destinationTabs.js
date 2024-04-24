@@ -9,7 +9,6 @@ const distanceElement = document.querySelector('[data-destination-distance]');
 const timeElement = document.querySelector('[data-destination-time]');
 
 // Flags
-let tabActiveClass = 'tab-active';
 let animInClass = 'anim-in';
 let animOutClass = 'anim-out';
 let isChangingContent = false;
@@ -80,9 +79,9 @@ export default tabsContainer.addEventListener('click', (event) => {
         return;
     }
 
-    if (eventTarget.classList.contains(tabActiveClass) || isChangingContent) return;
+    if (eventTarget.ariaSelected == 'true' || isChangingContent) return;
 
-    tabElements.forEach(tab => tab.classList.remove(tabActiveClass));
-    eventTarget.classList.add(tabActiveClass);
+    tabElements.forEach(tab => tab.ariaSelected = 'false');
+    eventTarget.ariaSelected = 'true';
     handleTabClick(targetContent);
 })
