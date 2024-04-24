@@ -150,11 +150,11 @@
             transition: width 350ms ease-in-out;
         }
 
-        &.tab-active {
+        &[aria-selected="true"] {
             color: $c-white;
         }
 
-        &.tab-active::before {
+        &[aria-selected="true"]::before {
             width: 100%;
         }
     }
