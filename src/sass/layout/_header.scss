@@ -96,6 +96,7 @@
         padding-top: 7.5rem;
         padding-left: 2rem;
         z-index: 998;
+        visibility: hidden;
         counter-reset: nav-list;
         counter-set: nav-list -1; // setting counter so it starts with 0
         transform: translateX(100%);
@@ -116,6 +117,7 @@
             padding: 0;
             background-color: transparent;
             backdrop-filter: unset;
+            visibility: visible;
             transform: unset;
         }
     }
