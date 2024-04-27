@@ -217,6 +217,11 @@
         cursor: pointer;
         z-index: 999;
 
+        &:focus-visible {
+            outline: 2px dashed $c-white;
+            outline-offset: 3px;
+        }
+
         @include breakpoint('md') {
             display: none;
         }
